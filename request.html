@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start a Project — RCHsites</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.request-page {
+  padding-top: 72px;
+  min-height: 100vh;
+}
+
+.request-hero {
+  padding: 5rem 0 3rem;
+  position: relative;
+}
+
+.request-hero .bg-shapes { opacity: 0.5; }
+
+.request-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4rem;
+  align-items: start;
+  padding-bottom: 6rem;
+}
+
+.request-info {
+  position: sticky;
+  top: 100px;
+}
+
+.request-info h1 {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.request-info h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.request-info > p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.info-cards {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.info-card {
+  display: flex; gap: 1rem;
+  padding: 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+
+.info-card:hover {
+  border-color: var(--accent-light);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+
+.info-card-icon {
+  width: 44px; height: 44px;
+  background: var(--accent-bg);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.info-card-text h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.info-card-text p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── FORM ── */
+.request-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.form-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.form-group label .optional {
+  font-weight: 400;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196,93,62,0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--text-faint); }
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%2378716c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.5rem 0;
+}
+
+/* ── PLAN SELECTOR ── */
+.plan-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.plan-option {
+  position: relative;
+}
+
+.plan-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plan-option label {
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.8rem;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.plan-option label:hover {
+  border-color: var(--accent-light);
+  background: var(--accent-bg);
+}
+
+.plan-option input:checked + label {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.plan-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.plan-price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.plan-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-top: 0.2rem;
+}
+
+/* ── SUBMIT ── */
+.form-submit {
+  margin-top: 2rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.submit-btn:hover::after { transform: translateX(100%); }
+
+.submit-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(196,93,62,0.3);
+}
+
+.submit-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-top: 1rem;
+}
+
+/* ── SUCCESS STATE ── */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.form-success.active { display: block; }
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.form-success h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.form-success p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 380px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .request-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .request-info { position: static; }
+  .form-row { grid-template-columns: 1fr; }
+  .plan-options { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">RCH<span>sites</span></a>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="portal.html">Client Portal</a>
+    <a href="request.html" class="nav-cta active">Start a Project</a>
+  </div>
+</nav>
+
+<div class="page-content request-page">
+
+  <!-- HERO -->
+  <section class="request-hero">
+    <div class="bg-shapes">
+      <div class="bg-shape"></div>
+      <div class="bg-shape"></div>
+    </div>
+  </section>
+
+  <!-- MAIN LAYOUT -->
+  <div class="container">
+    <div class="request-layout">
+
+      <!-- LEFT: INFO -->
+      <div class="request-info reveal-left">
+        <div class="section-eyebrow">Start a Project</div>
+        <h1>Let's build<br><em>your site.</em></h1>
+        <p>Fill out the form and we'll get back to you within 24 hours with a plan, a timeline, and a quote. No commitment — just a conversation.</p>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-icon">⏱</div>
+            <div class="info-card-text">
+              <h4>24-hour response</h4>
+              <p>Every request gets a personal reply within one business day.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">💬</div>
+            <div class="info-card-text">
+              <h4>No commitment</h4>
+              <p>Submitting this form doesn't lock you in. It starts a conversation.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📦</div>
+            <div class="info-card-text">
+              <h4>What you get</h4>
+              <p>Clean HTML files, an instruction pamphlet, and Client Portal access during the build.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📧</div>
+            <div class="info-card-text">
+              <h4>Prefer email?</h4>
+              <p>Reach us directly at hello@rchsites.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="request-form-card reveal-right" id="formCard">
+        <div class="form-title">Project Request</div>
+        <div class="form-subtitle">Tell us about your project and we'll take it from there.</div>
+
+        <form id="requestForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" class="form-input" name="firstName" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" class="form-input" name="lastName" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-input" name="email" placeholder="jane@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phone <span class="optional">(optional)</span></label>
+            <input type="tel" class="form-input" name="phone" placeholder="(555) 000-0000">
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="form-group">
+            <label>Business / Project Name</label>
+            <input type="text" class="form-input" name="business" placeholder="Acme Co" required>
+          </div>
+
+          <div class="form-group">
+            <label>What does your business do? <span class="optional">(brief)</span></label>
+            <input type="text" class="form-input" name="description" placeholder="We sell handmade candles online">
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Plan</label>
+            <div class="plan-options">
+              <div class="plan-option">
+                <input type="radio" name="plan" id="planStarter" value="starter">
+                <label for="planStarter">
+                  <span class="plan-name">Starter</span>
+                  <span class="plan-price">$800</span>
+                  <span class="plan-tag">Up to 3 pages</span>
+                </label>
+              </div>
+              <div class="plan-option">
+                <input type="radio" name="plan" id="planPro" value="professional" checked>
+                <label for="planPro">
+                  <span class="plan-name">Professional</span>
+                  <span class="plan-price">$1,500</span>
+                  <span class="plan-tag">Up to 7 pages</span>
+                </label>
+              </div>
+              <div class="plan-option">
+                <input type="radio" name="plan" id="planPremium" value="premium">
+                <label for="planPremium">
+                  <span class="plan-name">Premium</span>
+                  <span class="plan-price">$2,500</span>
+                  <span class="plan-tag">Unlimited pages</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Interested in monthly upkeep? <span class="optional">(optional)</span></label>
+            <select class="form-select" name="upkeep">
+              <option value="undecided">Not sure yet</option>
+              <option value="none">No thanks — I'll manage it myself</option>
+              <option value="basic">Basic ($20/mo)</option>
+              <option value="standard">Standard ($30/mo)</option>
+              <option value="priority">Priority ($50/mo)</option>
+            </select>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="form-group">
+            <label>Anything else you'd like us to know? <span class="optional">(optional)</span></label>
+            <textarea class="form-textarea" name="notes" placeholder="Timeline, inspiration, features you need, existing site to reference…"></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="submit-btn">Submit Request →</button>
+            <p class="submit-note">No payment required. We'll reach out within 24 hours.</p>
+          </div>
+        </form>
+
+        <!-- SUCCESS -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✉️</div>
+          <h3>Request received!</h3>
+          <p>We'll review your project details and get back to you within 24 hours with a plan and next steps.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">RCH<span>sites</span></div>
+        <p class="footer-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portal.html">Client Portal</a>
+        <a href="request.html">Request a Quote</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Access</h4>
+        <a href="portal.html">View My Site</a>
+        <a href="pricing.html#upkeep">Monthly Upkeep</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@rchsites.com">hello@rchsites.com</a>
+        <a href="request.html">Project Request Form</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 RCHsites. All rights reserved.</span>
+      <span>Opelika, Alabama</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// ─── FORM HANDLING ───
+// In production, wire this up to your backend, Formspree, Netlify Forms, etc.
+const form = document.getElementById('requestForm');
+const successEl = document.getElementById('formSuccess');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const data = new FormData(form);
+  const entries = Object.fromEntries(data.entries());
+  console.log('Form submission:', entries);
+
+  // Simulate sending
+  const btn = form.querySelector('.submit-btn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    form.style.display = 'none';
+    document.querySelector('.form-title').style.display = 'none';
+    document.querySelector('.form-subtitle').style.display = 'none';
+    successEl.classList.add('active');
+  }, 800);
+});
+</script>
+</body>
+</html>

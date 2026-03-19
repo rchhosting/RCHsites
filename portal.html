@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Portal — RCHsites</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.portal-page {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  padding-top: 72px;
+}
+
+.portal-main {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.portal-main .bg-shapes { opacity: 0.5; }
+
+/* ── LOGIN STATE ── */
+.portal-login {
+  text-align: center;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.portal-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 2rem;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-light);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.portal-login h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.portal-login > p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.portal-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.input-group {
+  display: flex; gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.portal-input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.portal-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196,93,62,0.1);
+}
+
+.portal-input::placeholder { color: var(--text-faint); }
+
+.portal-btn {
+  padding: 0.9rem 1.6rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  white-space: nowrap;
+}
+
+.portal-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(196,93,62,0.25);
+}
+
+.portal-btn:active { transform: translateY(0); }
+
+.portal-error {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  min-height: 1.2rem;
+  transition: color 0.3s;
+}
+
+.portal-error.error { color: #dc4a4a; }
+.portal-error.success { color: #2d9d5c; }
+
+.portal-hint {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  line-height: 1.6;
+}
+
+.portal-hint a { color: var(--accent); text-decoration: underline; }
+
+/* ── PREVIEW STATE ── */
+.portal-preview-container {
+  display: none;
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+  animation: previewIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes previewIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.portal-preview-container.active { display: block; }
+
+.preview-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 0.8rem 1.5rem;
+}
+
+.preview-info {
+  display: flex; align-items: center; gap: 1rem;
+}
+
+.preview-dots {
+  display: flex; gap: 6px;
+}
+
+.preview-dots span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.preview-dots span:nth-child(1) { background: #f06b6b; }
+.preview-dots span:nth-child(2) { background: #f0c06b; }
+.preview-dots span:nth-child(3) { background: #6bf06b; }
+
+.preview-url {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.preview-actions {
+  display: flex; gap: 0.5rem;
+}
+
+.preview-actions button {
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.preview-actions button:hover {
+  border-color: var(--text-faint);
+  color: var(--text);
+}
+
+.preview-actions .logout-btn {
+  border-color: var(--accent-light);
+  color: var(--accent);
+}
+
+.preview-actions .logout-btn:hover {
+  background: var(--accent-bg);
+}
+
+.preview-frame {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+  min-height: 550px;
+  position: relative;
+}
+
+.preview-frame iframe {
+  width: 100%; height: 550px;
+  border: none;
+}
+
+.preview-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 550px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.preview-placeholder .big-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+.preview-placeholder h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.preview-placeholder p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.preview-status {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  padding: 0.4rem 1rem;
+  background: var(--accent-bg);
+  border-radius: 100px;
+}
+
+.preview-status .live-dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pingPulse 2s ease-in-out infinite;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .input-group { flex-direction: column; }
+  .preview-toolbar { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+  .preview-url { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">RCH<span>sites</span></a>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="portal.html" class="active">Client Portal</a>
+    <a href="request.html" class="nav-cta">Start a Project</a>
+  </div>
+</nav>
+
+<div class="page-content portal-page">
+  <div class="portal-main">
+    <div class="bg-shapes">
+      <div class="bg-shape"></div>
+      <div class="bg-shape"></div>
+      <div class="bg-shape"></div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="portal-login" id="portalLogin">
+      <div class="portal-icon">🔐</div>
+      <h1>Client Portal</h1>
+      <p>Enter the project password we provided to preview your site's current state.</p>
+      <div class="portal-form">
+        <div class="input-group">
+          <input type="password" class="portal-input" id="portalPassword" placeholder="Enter project password" autocomplete="off">
+          <button class="portal-btn" id="portalSubmit">View Preview</button>
+        </div>
+        <div class="portal-error" id="portalError"></div>
+        <div class="portal-hint">
+          Don't have a password yet? <a href="request.html">Start a project</a> and you'll receive one during the build phase.
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="portal-preview-container" id="portalPreview">
+      <div class="preview-toolbar">
+        <div class="preview-info">
+          <div class="preview-dots"><span></span><span></span><span></span></div>
+          <div class="preview-url" id="previewUrl">preview.rchsites.com/project</div>
+        </div>
+        <div class="preview-actions">
+          <button id="refreshBtn" title="Refresh">↻ Refresh</button>
+          <button class="logout-btn" id="logoutBtn">Sign Out</button>
+        </div>
+      </div>
+      <div class="preview-frame" id="previewFrame">
+        <!-- iframe or placeholder injected here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">RCH<span>sites</span></div>
+        <p class="footer-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portal.html">Client Portal</a>
+        <a href="request.html">Request a Quote</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Access</h4>
+        <a href="portal.html">View My Site</a>
+        <a href="pricing.html#upkeep">Monthly Upkeep</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@rchsites.com">hello@rchsites.com</a>
+        <a href="request.html">Project Request Form</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 RCHsites. All rights reserved.</span>
+      <span>Opelika, Alabama</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// ─── CLIENT PORTAL LOGIC ───
+// In production, replace this with a server-side check.
+// Map passwords to client projects:
+const CLIENTS = {
+  'demo2026': {
+    name: 'Demo Project',
+    status: 'In Progress',
+    url: null, // set to an iframe URL for real previews, e.g. 'https://preview.rchsites.com/demo'
+    message: 'This is a demo preview. In a real project, your in-progress website would appear here — fully interactive and up to date with the latest build.'
+  }
+  // Add more: 'clientPassword': { name, status, url, message }
+};
+
+const loginEl     = document.getElementById('portalLogin');
+const previewEl   = document.getElementById('portalPreview');
+const pwInput     = document.getElementById('portalPassword');
+const submitBtn   = document.getElementById('portalSubmit');
+const errorEl     = document.getElementById('portalError');
+const frameEl     = document.getElementById('previewFrame');
+const urlEl       = document.getElementById('previewUrl');
+const logoutBtn   = document.getElementById('logoutBtn');
+const refreshBtn  = document.getElementById('refreshBtn');
+
+function showError(msg) {
+  errorEl.textContent = msg;
+  errorEl.className = 'portal-error error';
+}
+
+function showSuccess(msg) {
+  errorEl.textContent = msg;
+  errorEl.className = 'portal-error success';
+}
+
+function renderPreview(client) {
+  loginEl.style.display = 'none';
+  previewEl.classList.add('active');
+  urlEl.textContent = 'preview.rchsites.com/' + client.name.toLowerCase().replace(/\s+/g, '-');
+
+  if (client.url) {
+    frameEl.innerHTML = '<iframe src="' + client.url + '" title="Site Preview"></iframe>';
+  } else {
+    frameEl.innerHTML = `
+      <div class="preview-placeholder">
+        <div class="big-icon">🚧</div>
+        <h3>${client.name}</h3>
+        <p>${client.message}</p>
+        <div class="preview-status">
+          <span class="live-dot"></span>
+          Status: ${client.status}
+        </div>
+      </div>
+    `;
+  }
+}
+
+function attemptLogin() {
+  const pw = pwInput.value.trim();
+  if (!pw) { showError('Please enter your project password.'); return; }
+
+  // Simulate a brief loading state
+  submitBtn.textContent = 'Verifying…';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    const client = CLIENTS[pw];
+    if (client) {
+      showSuccess('Access granted.');
+      setTimeout(() => renderPreview(client), 400);
+    } else {
+      showError('Invalid password. Check with your project manager.');
+      submitBtn.textContent = 'View Preview';
+      submitBtn.disabled = false;
+      // Shake animation
+      pwInput.style.animation = 'shake 0.4s ease';
+      setTimeout(() => pwInput.style.animation = '', 400);
+    }
+  }, 600);
+}
+
+submitBtn.addEventListener('click', attemptLogin);
+pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+
+logoutBtn.addEventListener('click', () => {
+  previewEl.classList.remove('active');
+  loginEl.style.display = '';
+  pwInput.value = '';
+  errorEl.textContent = '';
+  submitBtn.textContent = 'View Preview';
+  submitBtn.disabled = false;
+});
+
+refreshBtn.addEventListener('click', () => {
+  const iframe = frameEl.querySelector('iframe');
+  if (iframe) iframe.src = iframe.src;
+});
+
+// Shake keyframes (injected dynamically)
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
