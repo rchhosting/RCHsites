@@ -17,7 +17,7 @@
   --border-blue:rgba(74,143,231,0.15);
   --glow-sm:0 0 20px rgba(74,143,231,0.08);--glow-md:0 0 40px rgba(74,143,231,0.1);
   --grid-opacity:1;
-  --logo-stroke:#E8E6E2;--logo-text:#E8E6E2;
+  --logo-stroke:#E8E6E2;--logo-text:#E8E6E2;--logo-rect:#0C0E13;
   --nav-bg:rgba(12,14,19,0.75);
   --toggle-bg:rgba(255,255,255,0.06);
   --font-h:'Michroma',sans-serif;--font:'Manrope',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
@@ -35,8 +35,8 @@
   --border-blue:rgba(45,106,196,0.15);
   --glow-sm:0 2px 12px rgba(45,106,196,0.06);--glow-md:0 4px 24px rgba(45,106,196,0.08);
   --grid-opacity:0.6;
-  --logo-stroke:#2D6AC4;--logo-text:#2D6AC4;
-  --nav-bg:rgba(244,243,240,0.82);
+  --logo-stroke:#2D6AC4;--logo-text:#2D6AC4;--logo-rect:#F4F3F0;
+  --nav-bg:rgba(244,243,240,0.92);
   --toggle-bg:rgba(0,0,0,0.04);
   color-scheme: light;
 }
@@ -58,7 +58,7 @@ nav.scrolled{box-shadow:0 1px 20px rgba(0,0,0,0.08)}
 .n-logo svg{height:32px;width:auto;transition:all .3s}
 .n-logo svg .globe-line{stroke:var(--logo-stroke);transition:stroke .4s}
 .n-logo svg .logo-text{fill:var(--logo-text);transition:fill .4s}
-.n-logo svg .logo-bg{fill:var(--bg);transition:fill .4s}
+.n-logo svg .logo-bg{fill:var(--logo-rect);transition:fill .4s}
 .n-logo:hover svg{transform:scale(1.05)}
 .n-logo-text{font-family:var(--font-h);font-size:.7rem;letter-spacing:.12em;color:var(--text-faint);transition:color .4s}
 
