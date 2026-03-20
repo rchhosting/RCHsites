@@ -6,37 +6,34 @@
 <title>Client Portal — RCHsites</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* ═══ LOGIN ═══ */
 .login-screen{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 64px);padding:40px 24px;margin-top:64px}
 .login-box{width:100%;max-width:400px;text-align:center}
 .login-emoji{font-size:2.2rem;margin-bottom:20px}
 .login-box h1{font-family:var(--font-h);font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
 .login-box>p{color:var(--text-mid);font-size:.9rem;margin-bottom:28px;line-height:1.6}
 .field{margin-bottom:14px}
-.field input,.field textarea,.field select{width:100%;padding:13px 16px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none;transition:.3s}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-faint)}
-.field input::placeholder,.field textarea::placeholder{color:var(--text-faint)}
+.field input{width:100%;padding:13px 16px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none;transition:.3s}
+.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-faint)}
+.field input::placeholder{color:var(--text-faint)}
 .login-err{display:none;margin-top:12px;padding:10px 14px;background:rgba(230,60,60,0.08);border:1px solid rgba(230,60,60,0.15);border-radius:8px;color:#e55;font-size:.8rem;font-family:var(--mono)}
 .login-foot{margin-top:24px;font-size:.8rem;color:var(--text-faint)}
 .login-foot a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.btn-login{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:100px;font-family:var(--font);font-weight:600;font-size:.88rem;cursor:pointer;transition:.3s;box-shadow:var(--glow-sm)}
+.btn-login:hover{background:var(--blue-bright);box-shadow:var(--glow-md)}
 
-/* ═══ PORTAL ═══ */
 .portal{display:none}
 .portal-wrap{max-width:1000px;margin:0 auto;padding:100px 24px 80px}
-
 .portal-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px}
 .portal-top h1{font-family:var(--font-h);font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase}
 .portal-top h1 .hl{color:var(--blue)}
 .signout{font-size:.78rem;color:var(--text-faint);cursor:pointer;text-decoration:underline;text-underline-offset:2px;background:none;border:none;font-family:var(--font);transition:.2s}
 .signout:hover{color:var(--blue)}
 
-/* Stats */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px}
-.stat{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+.stat{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;transition:background .4s,border-color .4s}
 .stat .lbl{font-family:var(--font-h);font-size:.45rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.15em;margin-bottom:4px}
 .stat .val{font-size:.88rem;font-weight:600}
 
-/* Tabs */
 .tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px;gap:0;overflow-x:auto}
 .tab{padding:11px 16px;font-family:var(--font);font-size:.8rem;font-weight:500;color:var(--text-faint);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:.2s;margin-bottom:-1px;white-space:nowrap}
 .tab:hover{color:var(--text-mid)}
@@ -45,7 +42,6 @@
 .pane.on{display:block}
 @keyframes paneIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-/* ═══ PREVIEW ═══ */
 .prev-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px}
 .prev-bar span{font-size:.8rem;color:var(--text-mid)}
 .devices{display:flex;gap:2px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:3px}
@@ -59,25 +55,22 @@
 .frame-url{flex:1;margin-left:6px;padding:4px 12px;background:var(--bg);border:1px solid var(--border);border-radius:4px;font-family:var(--mono);font-size:.65rem;color:var(--text-faint);text-align:center}
 .frame iframe{width:100%;height:520px;border:none;display:block;background:#fff}
 
-/* ═══ FEEDBACK ═══ */
 .fb-grid{display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:24px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:24px;transition:background .4s}
 .card h2{font-family:var(--font-h);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
 .card h2 .hl{color:var(--blue)}
 .card .sub{font-size:.8rem;color:var(--text-faint);margin-bottom:20px}
-
 .form-field{margin-bottom:16px}
 .form-field label{display:block;font-size:.78rem;font-weight:600;margin-bottom:5px}
 .form-field input,.form-field textarea,.form-field select{width:100%;padding:10px 13px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font);font-size:.84rem;outline:none;transition:.3s}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-faint)}
 .form-field textarea{resize:vertical;min-height:100px;line-height:1.5}
-.form-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%23787570' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer}
+.form-field select{appearance:none;cursor:pointer}
 .form-field select option{background:var(--bg-card);color:var(--text)}
 .form-hint{font-size:.68rem;color:var(--text-faint);margin-top:4px}
-.fb-ok{display:none;padding:20px;text-align:center;background:rgba(74,143,231,0.05);border:1px solid var(--border-blue);border-radius:8px;margin-top:16px}
+.fb-ok{display:none;padding:20px;text-align:center;background:var(--blue-faint);border:1px solid var(--border-blue);border-radius:8px;margin-top:16px}
 .fb-ok h3{color:var(--blue);font-size:.9rem;margin-bottom:4px}
 .fb-ok p{color:var(--text-mid);font-size:.82rem}
-
 .side{padding:20px}
 .side h3{font-weight:600;font-size:.82rem;margin-bottom:14px}
 .step-row{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--border)}
@@ -89,7 +82,6 @@
 .email-card .lbl{font-size:.65rem;color:var(--text-faint);margin-bottom:2px}
 .email-card a{color:var(--blue);font-size:.78rem;font-weight:600}
 
-/* ═══ FILE UPLOAD ═══ */
 .drop-zone{border:2px dashed var(--border);border-radius:10px;padding:36px 24px;text-align:center;cursor:pointer;transition:.3s;background:var(--bg);margin-bottom:18px}
 .drop-zone:hover{border-color:var(--text-faint);background:var(--bg-card)}
 .drop-zone.drag-over{border-color:var(--blue);background:var(--blue-faint)}
@@ -108,7 +100,6 @@
 .fi-remove:hover{color:#e55;background:rgba(230,60,60,0.08)}
 .upload-note{font-size:.72rem;color:var(--text-faint);text-align:center;padding:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px}
 
-/* ═══ TIMELINE ═══ */
 .tl{position:relative;padding-left:26px}
 .tl::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--border)}
 .tl-s{position:relative;padding-bottom:26px}
@@ -117,47 +108,33 @@
 .tl-s.done .tl-d{background:var(--blue);border-color:var(--blue)}
 .tl-s.now .tl-d{background:var(--bg);border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-faint)}
 .tl-s h3{font-size:.86rem;font-weight:600;margin-bottom:2px}
-.tl-s.done h3{color:var(--blue)}
-.tl-s.later h3{color:var(--text-faint)}
-.tl-s p{font-size:.78rem;color:var(--text-mid)}
-.tl-s.later p{color:var(--text-faint)}
+.tl-s.done h3{color:var(--blue)}.tl-s.later h3{color:var(--text-faint)}
+.tl-s p{font-size:.78rem;color:var(--text-mid)}.tl-s.later p{color:var(--text-faint)}
 .badge{display:inline-block;padding:2px 9px;border-radius:20px;font-family:var(--mono);font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-top:5px}
-.badge.done{background:rgba(74,143,231,0.1);color:var(--blue)}
-.badge.active{background:rgba(74,143,231,0.15);color:var(--blue-bright)}
-.badge.pending{background:var(--bg-surface);color:var(--text-faint)}
+.badge.done{background:rgba(74,143,231,0.1);color:var(--blue)}.badge.active{background:rgba(74,143,231,0.15);color:var(--blue-bright)}.badge.pending{background:var(--bg-surface);color:var(--text-faint)}
 
-/* ═══ APPROVE ═══ */
 .approve{text-align:center;max-width:460px;margin:0 auto}
 .approve .ico{font-size:2.2rem;margin-bottom:18px}
 .approve h2{font-family:var(--font-h);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
 .approve h2 .hl{color:var(--blue)}
 .approve>p{color:var(--text-mid);font-size:.88rem;margin-bottom:24px;line-height:1.6}
 .approve-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.approve-ok{display:none;margin-top:22px;padding:18px;background:rgba(74,143,231,0.06);border:1px solid var(--border-blue);border-radius:10px}
+.approve-ok{display:none;margin-top:22px;padding:18px;background:var(--blue-faint);border:1px solid var(--border-blue);border-radius:10px}
 .approve-ok h3{color:var(--blue);font-size:.9rem;margin-bottom:3px}
 .approve-ok p{color:var(--text-mid);font-size:.82rem}
 
-/* ═══ FILES ═══ */
 .files-empty{text-align:center;padding:44px 24px}
 .files-empty .ico{font-size:1.8rem;margin-bottom:14px}
 .files-empty h3{font-size:.95rem;margin-bottom:5px}
 .files-empty p{color:var(--text-faint);font-size:.84rem;max-width:340px;margin:0 auto}
 
-/* ═══ BTNS ═══ */
-.btn-full{width:100%}
-.btn-sm{padding:9px 16px;font-size:.78rem}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border-light);border-radius:100px;font-family:var(--font);font-weight:600;font-size:.82rem;padding:10px 20px;cursor:pointer;transition:.3s}
-.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
-.btn-dark-solid{background:var(--blue);color:#fff;border:none;border-radius:100px;font-family:var(--font);font-weight:600;font-size:.82rem;padding:12px 24px;cursor:pointer;transition:.3s;box-shadow:var(--glow-sm);display:inline-flex;align-items:center;gap:6px}
-.btn-dark-solid:hover{background:var(--blue-bright);box-shadow:var(--glow-md)}
+.btn-portal{background:var(--blue);color:#fff;border:none;border-radius:100px;font-family:var(--font);font-weight:600;font-size:.82rem;padding:12px 24px;cursor:pointer;transition:.3s;box-shadow:var(--glow-sm);display:inline-flex;align-items:center;gap:6px;width:100%}
+.btn-portal:hover{background:var(--blue-bright);box-shadow:var(--glow-md)}
+.btn-outline-p{background:transparent;color:var(--text);border:1px solid var(--border-light);border-radius:100px;font-family:var(--font);font-weight:600;font-size:.82rem;padding:10px 20px;cursor:pointer;transition:.3s}
+.btn-outline-p:hover{border-color:var(--blue);color:var(--blue)}
 
-@media(max-width:768px){
-  .portal-wrap{padding:80px 16px 60px}
-  .stats{grid-template-columns:1fr}
-  .fb-grid{grid-template-columns:1fr}
-  .frame iframe{height:380px}
-  .tab{padding:10px 12px;font-size:.72rem}
-}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@media(max-width:768px){.portal-wrap{padding:80px 16px 60px}.stats{grid-template-columns:1fr}.fb-grid{grid-template-columns:1fr}.frame iframe{height:380px}.tab{padding:10px 12px;font-size:.72rem}}
 </style>
 </head>
 <body>
@@ -175,7 +152,7 @@
       <line x1="12" y1="33" x2="108" y2="33" class="globe-line" stroke-width="0.8"/>
       <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
       <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
-      <rect x="28" y="19.5" width="64" height="12" rx="1" fill="var(--bg)" opacity="0.85"/>
+      <rect x="28" y="19.5" width="64" height="12" rx="1" class="logo-bg" opacity="0.9"/>
       <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
       <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
       <text x="60" y="29" text-anchor="middle" class="logo-text" font-family="Michroma, sans-serif" font-size="11" font-weight="400" letter-spacing="2">RCH</text>
@@ -195,338 +172,144 @@
   </div>
 </nav>
 
-<!-- ═══ LOGIN ═══ -->
 <section class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="login-emoji">🔐</div>
     <h1>Client Portal</h1>
     <p>Enter the project password we provided to preview your site's current state.</p>
-    <div class="field">
-      <input type="password" id="pw" placeholder="Project password" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-    <button class="btn-dark-solid btn-full" onclick="doLogin()">View Preview</button>
+    <div class="field"><input type="password" id="pw" placeholder="Project password" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn-login" onclick="doLogin()">View Preview</button>
     <div class="login-err" id="loginErr">Incorrect password. Please check and try again.</div>
     <p class="login-foot">Don't have a password yet? <a href="request.html">Start a project</a> and you'll receive one during the build phase.</p>
   </div>
 </section>
 
-<!-- ═══ PORTAL ═══ -->
-<section class="portal" id="portal">
-  <div class="portal-wrap">
-
-    <div class="portal-top">
-      <h1>Your <span class="hl">project</span></h1>
-      <button class="signout" onclick="doSignOut()">Sign Out</button>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><div class="lbl">Project</div><div class="val" id="sN">–</div></div>
-      <div class="stat"><div class="lbl">Status</div><div class="val" id="sS">–</div></div>
-      <div class="stat"><div class="lbl">Revisions</div><div class="val" id="sR">–</div></div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab on" data-t="preview">Preview</button>
-      <button class="tab" data-t="feedback">Feedback</button>
-      <button class="tab" data-t="uploads">Upload Media</button>
-      <button class="tab" data-t="timeline">Timeline</button>
-      <button class="tab" data-t="approve">Approve</button>
-      <button class="tab" data-t="files">Final Handoff</button>
-    </div>
-
-    <!-- PREVIEW -->
-    <div class="pane on" id="p-preview">
-      <div class="prev-bar">
-        <span>Live preview — your site in progress</span>
-        <div class="devices">
-          <button class="on" onclick="setDev('desktop',this)">Desktop</button>
-          <button onclick="setDev('tablet',this)">Tablet</button>
-          <button onclick="setDev('mobile',this)">Mobile</button>
-        </div>
-      </div>
-      <div class="frame desktop" id="frame">
-        <div class="frame-bar">
-          <span class="frame-dot r"></span><span class="frame-dot y"></span><span class="frame-dot g"></span>
-          <span class="frame-url" id="urlBar">–</span>
-        </div>
-        <iframe id="iframe" title="Site Preview"></iframe>
-      </div>
-    </div>
-
-    <!-- FEEDBACK -->
-    <div class="pane" id="p-feedback">
-      <div class="fb-grid">
-        <div class="card">
-          <h2>Submit <span class="hl">feedback</span></h2>
-          <p class="sub">Tell us what to change — be as specific as you can.</p>
-          <form id="fbForm" action="https://formsubmit.co/requests@rchsites.com" method="POST">
-            <input type="hidden" name="_subject" value="Client Revision Request — Portal">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" id="fNext">
-            <input type="text" name="_honey" style="display:none">
-            <input type="hidden" name="Project" id="hProj">
-            <div class="form-field"><label>Your Name</label><input type="text" name="Name" required placeholder="First and last"></div>
-            <div class="form-field"><label>Type</label>
-              <select name="Feedback Type" required>
-                <option value="" disabled selected>Choose…</option>
-                <option>Design change</option><option>Text / content update</option>
-                <option>Bug / something broken</option><option>New feature request</option>
-                <option>General question</option>
-              </select>
-            </div>
-            <div class="form-field"><label>Which page(s)?</label><input type="text" name="Pages" placeholder="e.g. Home, About, Contact"></div>
-            <div class="form-field"><label>Details</label><textarea name="Details" required placeholder="Describe what you'd like changed. Reference specific sections, colors, text, images — the more detail the better."></textarea><div class="form-hint">Tip: batch all feedback into one submission — each counts as one revision round.</div></div>
-            <button type="submit" class="btn-dark-solid btn-full">Submit Feedback →</button>
-          </form>
-          <div class="fb-ok" id="fbOk"><h3>✓ Feedback received</h3><p>We'll review your notes and update the preview within 24–48 hours.</p></div>
-        </div>
-        <div class="card side">
-          <h3>How revisions work</h3>
-          <div class="step-row"><div class="step-n">01</div><div><h4>Preview your site</h4><p>Check the Preview tab across devices.</p></div></div>
-          <div class="step-row"><div class="step-n">02</div><div><h4>Batch your changes</h4><p>One submission = one revision round.</p></div></div>
-          <div class="step-row"><div class="step-n">03</div><div><h4>We implement</h4><p>Updates live in 24–48 hours.</p></div></div>
-          <div class="step-row"><div class="step-n">04</div><div><h4>Approve</h4><p>Happy? Lock it in on the Approve tab.</p></div></div>
-          <div class="email-card"><div class="lbl">Prefer email?</div><a href="/cdn-cgi/l/email-protection#780a1d090d1d0b0c0b380a1b100b110c1d0b561b1715"><span class="__cf_email__" data-cfemail="4f3d2a3e3a2a3c3b3c0f3d2c273c263b2a3c612c2022">[email&#160;protected]</span></a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UPLOADS -->
-    <div class="pane" id="p-uploads">
-      <div class="card" style="max-width:640px">
-        <h2>Upload <span class="hl">media</span></h2>
-        <p class="sub">Drag photos, logos, videos, or any content you'd like on your site.</p>
-        <div class="drop-zone" id="dropZone">
-          <div class="drop-icon">📎</div>
-          <h3>Drag &amp; drop files here</h3>
-          <p>or <span class="browse-link" onclick="document.getElementById('fileInput').click()">browse your device</span></p>
-          <p style="margin-top:8px;font-size:.68rem;color:var(--text-faint)">Images, videos, PDFs — up to 25 MB each</p>
-        </div>
-        <input type="file" id="fileInput" multiple accept="image/*,video/*,.pdf,.ai,.psd,.svg" style="display:none">
-        <ul class="file-list" id="fileList"></ul>
-        <form id="uploadForm" action="https://formsubmit.co/requests@rchsites.com" method="POST" enctype="multipart/form-data" style="display:none">
-          <input type="hidden" name="_subject" id="uploadSubject" value="Client File Upload — Portal">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" id="uploadNext">
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="Project" id="hProj2">
-          <input type="hidden" name="Uploader Name" id="uploadName">
-          <input type="hidden" name="Notes" id="uploadNotes">
-        </form>
-        <div class="form-field"><label>Your Name</label><input type="text" id="uploaderName" placeholder="So we know who sent these"></div>
-        <div class="form-field"><label>Notes (optional)</label><textarea id="uploaderNotes" placeholder="e.g. 'Use the blue logo on the homepage hero'" style="min-height:70px"></textarea></div>
-        <button class="btn-dark-solid btn-full" id="sendFilesBtn" onclick="sendFiles()" disabled>Send Media →</button>
-        <div class="upload-note" style="margin-top:14px">Media is sent directly to our team at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c5e495d59495f585f6c5e4f445f4558495f024f4341">[email&#160;protected]</a>. For files over 25 MB, email us directly.</div>
-        <div class="fb-ok" id="uploadOk" style="margin-top:18px"><h3>✓ Media sent</h3><p>We've received your uploads and will incorporate them into your site.</p></div>
-      </div>
-    </div>
-
-    <!-- TIMELINE -->
-    <div class="pane" id="p-timeline">
-      <div class="tl">
-        <div class="tl-s done"><div class="tl-d"></div><h3>Discovery</h3><p>We discussed your vision, brand, and requirements.</p><span class="badge done">Complete</span></div>
-        <div class="tl-s now"><div class="tl-d"></div><h3>Design &amp; Build</h3><p>Your site is being designed and built. Preview it in the Preview tab.</p><span class="badge active">In Progress</span></div>
-        <div class="tl-s later"><div class="tl-d"></div><h3>Revise</h3><p>Submit feedback, and we'll refine until you're happy.</p><span class="badge pending">Up Next</span></div>
-        <div class="tl-s later"><div class="tl-d"></div><h3>Handoff</h3><p>Final HTML files and instruction pamphlet delivered to you.</p><span class="badge pending">Pending</span></div>
-      </div>
-    </div>
-
-    <!-- APPROVE -->
-    <div class="pane" id="p-approve">
-      <div class="approve">
-        <div class="ico">✅</div>
-        <h2>Ready to <span class="hl">approve?</span></h2>
-        <p>Once approved, we'll finalize your site and prepare your clean HTML files and instruction pamphlet for handoff.</p>
-        <div class="approve-btns">
-          <button class="btn-dark-solid" onclick="doApprove()">Approve Design →</button>
-          <button class="btn-outline btn-sm" onclick="goTab('feedback')">I have more changes</button>
-        </div>
-        <div class="approve-ok" id="approveOk"><h3>🎉 Design Approved</h3><p>We've been notified and will begin preparing your final files. Expect a follow-up soon.</p></div>
-      </div>
-    </div>
-
-    <!-- FILES -->
-    <div class="pane" id="p-files">
-      <div class="files-empty">
-        <div class="ico">📦</div>
-        <h3>Nothing here yet</h3>
-        <p>Once your design is approved, your final HTML files and instruction pamphlet will be ready here for download.</p>
-      </div>
-    </div>
-
+<section class="portal" id="portal"><div class="portal-wrap">
+  <div class="portal-top"><h1>Your <span class="hl">project</span></h1><button class="signout" onclick="doSignOut()">Sign Out</button></div>
+  <div class="stats">
+    <div class="stat"><div class="lbl">Project</div><div class="val" id="sN">–</div></div>
+    <div class="stat"><div class="lbl">Status</div><div class="val" id="sS">–</div></div>
+    <div class="stat"><div class="lbl">Revisions</div><div class="val" id="sR">–</div></div>
   </div>
-</section>
-
-<footer>
-  <div class="f-grid">
-    <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
-    <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
-    <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-    <div class="f-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#5c2e392d29392f282f1c2e3f342f3528392f723f3331"><span class="__cf_email__" data-cfemail="f08295818595838483b08293988399849583de939f9d">[email&#160;protected]</span></a><a href="request.html">Project Request Form</a></div>
+  <div class="tabs">
+    <button class="tab on" data-t="preview">Preview</button>
+    <button class="tab" data-t="feedback">Feedback</button>
+    <button class="tab" data-t="uploads">Upload Media</button>
+    <button class="tab" data-t="timeline">Timeline</button>
+    <button class="tab" data-t="approve">Approve</button>
+    <button class="tab" data-t="files">Final Handoff</button>
   </div>
-  <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
-</footer>
+
+  <div class="pane on" id="p-preview">
+    <div class="prev-bar"><span>Live preview — your site in progress</span><div class="devices"><button class="on" onclick="setDev('desktop',this)">Desktop</button><button onclick="setDev('tablet',this)">Tablet</button><button onclick="setDev('mobile',this)">Mobile</button></div></div>
+    <div class="frame desktop" id="frame"><div class="frame-bar"><span class="frame-dot r"></span><span class="frame-dot y"></span><span class="frame-dot g"></span><span class="frame-url" id="urlBar">–</span></div><iframe id="iframe" title="Site Preview"></iframe></div>
+  </div>
+
+  <div class="pane" id="p-feedback"><div class="fb-grid">
+    <div class="card"><h2>Submit <span class="hl">feedback</span></h2><p class="sub">Tell us what to change — be as specific as you can.</p>
+      <form id="fbForm" action="https://formsubmit.co/requests@rchsites.com" method="POST">
+        <input type="hidden" name="_subject" value="Client Revision Request — Portal"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" id="fNext"><input type="text" name="_honey" style="display:none"><input type="hidden" name="Project" id="hProj">
+        <div class="form-field"><label>Your Name</label><input type="text" name="Name" required placeholder="First and last"></div>
+        <div class="form-field"><label>Type</label><select name="Feedback Type" required><option value="" disabled selected>Choose…</option><option>Design change</option><option>Text / content update</option><option>Bug / something broken</option><option>New feature request</option><option>General question</option></select></div>
+        <div class="form-field"><label>Which page(s)?</label><input type="text" name="Pages" placeholder="e.g. Home, About, Contact"></div>
+        <div class="form-field"><label>Details</label><textarea name="Details" required placeholder="Describe what you'd like changed. Reference specific sections, colors, text, images — the more detail the better."></textarea><div class="form-hint">Tip: batch all feedback into one submission — each counts as one revision round.</div></div>
+        <button type="submit" class="btn-portal">Submit Feedback →</button>
+      </form>
+      <div class="fb-ok" id="fbOk"><h3>✓ Feedback received</h3><p>We'll review your notes and update the preview within 24–48 hours.</p></div>
+    </div>
+    <div class="card side"><h3>How revisions work</h3>
+      <div class="step-row"><div class="step-n">01</div><div><h4>Preview your site</h4><p>Check the Preview tab across devices.</p></div></div>
+      <div class="step-row"><div class="step-n">02</div><div><h4>Batch your changes</h4><p>One submission = one revision round.</p></div></div>
+      <div class="step-row"><div class="step-n">03</div><div><h4>We implement</h4><p>Updates live in 24–48 hours.</p></div></div>
+      <div class="step-row"><div class="step-n">04</div><div><h4>Approve</h4><p>Happy? Lock it in on the Approve tab.</p></div></div>
+      <div class="email-card"><div class="lbl">Prefer email?</div><a href="mailto:requests@rchsites.com">requests@rchsites.com</a></div>
+    </div>
+  </div></div>
+
+  <div class="pane" id="p-uploads"><div class="card" style="max-width:640px">
+    <h2>Upload <span class="hl">media</span></h2><p class="sub">Drag photos, logos, videos, or any content you'd like on your site.</p>
+    <div class="drop-zone" id="dropZone"><div class="drop-icon">📎</div><h3>Drag &amp; drop files here</h3><p>or <span class="browse-link" onclick="document.getElementById('fileInput').click()">browse your device</span></p><p style="margin-top:8px;font-size:.68rem;color:var(--text-faint)">Images, videos, PDFs — up to 25 MB each</p></div>
+    <input type="file" id="fileInput" multiple accept="image/*,video/*,.pdf,.ai,.psd,.svg" style="display:none">
+    <ul class="file-list" id="fileList"></ul>
+    <form id="uploadForm" action="https://formsubmit.co/requests@rchsites.com" method="POST" enctype="multipart/form-data" style="display:none"><input type="hidden" name="_subject" id="uploadSubject"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" id="uploadNext"><input type="text" name="_honey" style="display:none"><input type="hidden" name="Project" id="hProj2"><input type="hidden" name="Uploader Name" id="uploadName"><input type="hidden" name="Notes" id="uploadNotes"></form>
+    <div class="form-field"><label>Your Name</label><input type="text" id="uploaderName" placeholder="So we know who sent these"></div>
+    <div class="form-field"><label>Notes (optional)</label><textarea id="uploaderNotes" placeholder="e.g. 'Use the blue logo on the homepage hero'" style="min-height:70px"></textarea></div>
+    <button class="btn-portal" id="sendFilesBtn" onclick="sendFiles()" disabled>Send Media →</button>
+    <div class="upload-note" style="margin-top:14px">Media is sent directly to our team at requests@rchsites.com. For files over 25 MB, email us directly.</div>
+    <div class="fb-ok" id="uploadOk" style="margin-top:18px"><h3>✓ Media sent</h3><p>We've received your uploads and will incorporate them into your site.</p></div>
+  </div></div>
+
+  <div class="pane" id="p-timeline"><div class="tl">
+    <div class="tl-s done"><div class="tl-d"></div><h3>Discovery</h3><p>We discussed your vision, brand, and requirements.</p><span class="badge done">Complete</span></div>
+    <div class="tl-s now"><div class="tl-d"></div><h3>Design &amp; Build</h3><p>Your site is being designed and built. Preview it in the Preview tab.</p><span class="badge active">In Progress</span></div>
+    <div class="tl-s later"><div class="tl-d"></div><h3>Revise</h3><p>Submit feedback, and we'll refine until you're happy.</p><span class="badge pending">Up Next</span></div>
+    <div class="tl-s later"><div class="tl-d"></div><h3>Handoff</h3><p>Final HTML files and instruction pamphlet delivered to you.</p><span class="badge pending">Pending</span></div>
+  </div></div>
+
+  <div class="pane" id="p-approve"><div class="approve">
+    <div class="ico">✅</div><h2>Ready to <span class="hl">approve?</span></h2>
+    <p>Once approved, we'll finalize your site and prepare your clean HTML files and instruction pamphlet for handoff.</p>
+    <div class="approve-btns"><button class="btn-portal" style="width:auto" onclick="doApprove()">Approve Design →</button><button class="btn-outline-p" onclick="goTab('feedback')">I have more changes</button></div>
+    <div class="approve-ok" id="approveOk"><h3>🎉 Design Approved</h3><p>We've been notified and will begin preparing your final files. Expect a follow-up soon.</p></div>
+  </div></div>
+
+  <div class="pane" id="p-files"><div class="files-empty"><div class="ico">📦</div><h3>Nothing here yet</h3><p>Once your design is approved, your final HTML files and instruction pamphlet will be ready here for download.</p></div></div>
+</div></section>
+
+<footer><div class="f-grid">
+  <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
+  <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
+  <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
+  <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+</div><div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div></footer>
 
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
+<script src="main.js"></script>
 <script>
-/* ═══ PROJECTS ═══ */
-const PROJECTS = {
-  'demo2026': {
-    name: 'Demo Project',
-    status: 'In Progress',
-    url: 'https://rchsites.com',
-    revisions: '3 rounds included',
-    message: 'This is a demo preview.'
-  },
-  'kagefit3r8nK6': {
-    name: 'KageFit',
-    status: 'In Progress',
-    url: 'https://rchhosting.github.io/kf-2026-v3-18/',
-    revisions: '3 rounds included',
-    message: 'Last updated 3/18/26'
-  },
-  'demo-starter': {
-    name: 'Demo — Starter Plan',
-    status: 'Under Review',
-    url: 'https://rchsites.com',
-    revisions: '1 round included',
-    message: 'Starter tier demo.'
-  },
-  'demo-premium': {
-    name: 'Demo — Premium Plan',
-    status: 'Revision Round 2',
-    url: 'https://rchsites.com',
-    revisions: 'Unlimited',
-    message: 'Premium tier demo.'
-  }
+const PROJECTS={
+  'demo2026':{name:'Demo Project',status:'In Progress',url:'https://rchsites.com',revisions:'3 rounds included'},
+  'kagefit3r8nK6':{name:'KageFit',status:'In Progress',url:'https://rchhosting.github.io/kf-2026-v3-18/',revisions:'3 rounds included'},
+  'demo-starter':{name:'Demo — Starter Plan',status:'Under Review',url:'https://rchsites.com',revisions:'1 round included'},
+  'demo-premium':{name:'Demo — Premium Plan',status:'Revision Round 2',url:'https://rchsites.com',revisions:'Unlimited'}
 };
+let proj=null,uploadFiles=[];
 
-let proj = null;
-let uploadFiles = [];
-
-/* ═══ LOGIN ═══ */
-function doLogin() {
-  const v = document.getElementById('pw').value.trim();
-  if (PROJECTS[v]) {
-    proj = PROJECTS[v];
-    document.getElementById('loginErr').style.display = 'none';
-    enter();
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-    const pw = document.getElementById('pw');
-    pw.style.animation = 'shake .4s ease';
-    setTimeout(() => pw.style.animation = '', 400);
-  }
+function doLogin(){
+  const v=document.getElementById('pw').value.trim();
+  if(PROJECTS[v]){proj=PROJECTS[v];document.getElementById('loginErr').style.display='none';enter()}
+  else{document.getElementById('loginErr').style.display='block';const pw=document.getElementById('pw');pw.style.animation='shake .4s ease';setTimeout(()=>pw.style.animation='',400)}
 }
-
-function enter() {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('portal').style.display = 'block';
-  document.getElementById('sN').textContent = proj.name;
-  document.getElementById('sS').textContent = proj.status;
-  document.getElementById('sR').textContent = proj.revisions;
-  document.getElementById('urlBar').textContent = proj.url;
-  document.getElementById('iframe').src = proj.url;
-  document.getElementById('hProj').value = proj.name;
-  document.getElementById('hProj2').value = proj.name;
-  document.getElementById('fNext').value = location.href.split('?')[0] + '?feedback=sent';
-  document.getElementById('uploadNext').value = location.href.split('?')[0] + '?upload=sent';
+function enter(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('portal').style.display='block';
+  document.getElementById('sN').textContent=proj.name;document.getElementById('sS').textContent=proj.status;document.getElementById('sR').textContent=proj.revisions;
+  document.getElementById('urlBar').textContent=proj.url;document.getElementById('iframe').src=proj.url;
+  document.getElementById('hProj').value=proj.name;document.getElementById('hProj2').value=proj.name;
+  document.getElementById('fNext').value=location.href.split('?')[0]+'?feedback=sent';
+  document.getElementById('uploadNext').value=location.href.split('?')[0]+'?upload=sent';
 }
+function doSignOut(){proj=null;document.getElementById('portal').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('pw').value='';document.getElementById('iframe').src=''}
 
-function doSignOut() {
-  proj = null;
-  document.getElementById('portal').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('pw').value = '';
-  document.getElementById('iframe').src = '';
-}
+document.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>goTab(b.dataset.t))});
+function goTab(id){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===id));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='p-'+id))}
+function setDev(d,btn){document.querySelectorAll('.devices button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById('frame').className='frame '+d}
 
-/* ═══ TABS ═══ */
-document.querySelectorAll('.tab').forEach(b => {
-  b.addEventListener('click', () => goTab(b.dataset.t));
-});
+const dropZone=document.getElementById('dropZone'),fileInput=document.getElementById('fileInput');
+['dragenter','dragover'].forEach(e=>{dropZone.addEventListener(e,ev=>{ev.preventDefault();dropZone.classList.add('drag-over')})});
+['dragleave','drop'].forEach(e=>{dropZone.addEventListener(e,ev=>{ev.preventDefault();dropZone.classList.remove('drag-over')})});
+dropZone.addEventListener('drop',ev=>addFiles([...ev.dataTransfer.files]));
+dropZone.addEventListener('click',()=>fileInput.click());
+fileInput.addEventListener('change',()=>{addFiles([...fileInput.files]);fileInput.value=''});
 
-function goTab(id) {
-  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.t === id));
-  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'p-' + id));
-}
+function addFiles(files){files.forEach(f=>{if(f.size>25*1024*1024){alert(f.name+' is over 25 MB.');return}if(!uploadFiles.find(u=>u.name===f.name&&u.size===f.size))uploadFiles.push(f)});renderFiles()}
+function removeFile(i){uploadFiles.splice(i,1);renderFiles()}
+function renderFiles(){const list=document.getElementById('fileList'),btn=document.getElementById('sendFilesBtn');list.innerHTML='';uploadFiles.forEach((f,i)=>{const isImg=f.type.startsWith('image/'),isVid=f.type.startsWith('video/'),size=f.size<1024*1024?(f.size/1024).toFixed(0)+' KB':(f.size/(1024*1024)).toFixed(1)+' MB',icon=isImg?'🖼':isVid?'🎬':'📄',cls=isImg?'img':isVid?'vid':'';list.innerHTML+=`<li class="file-item"><div class="fi-info"><div class="fi-icon ${cls}">${icon}</div><div><h4>${f.name}</h4><span class="fi-meta">${size}</span></div></div><button class="fi-remove" onclick="removeFile(${i})">×</button></li>`});btn.disabled=uploadFiles.length===0}
+function sendFiles(){if(!uploadFiles.length)return;const form=document.getElementById('uploadForm');document.getElementById('uploadSubject').value='Client File Upload — '+(proj?proj.name:'Portal');document.getElementById('uploadName').value=document.getElementById('uploaderName').value||'Not provided';document.getElementById('uploadNotes').value=document.getElementById('uploaderNotes').value||'None';form.querySelectorAll('input[type="file"]').forEach(el=>el.remove());const dt=new DataTransfer();uploadFiles.forEach(f=>dt.items.add(f));const fi=document.createElement('input');fi.type='file';fi.name='attachment';fi.multiple=true;fi.files=dt.files;fi.style.display='none';form.appendChild(fi);form.style.display='block';form.submit();document.getElementById('uploadOk').style.display='block';uploadFiles=[];renderFiles()}
 
-/* ═══ DEVICE ═══ */
-function setDev(d, btn) {
-  document.querySelectorAll('.devices button').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  document.getElementById('frame').className = 'frame ' + d;
-}
+function doApprove(){if(!confirm('Are you sure you want to approve? We\u2019ll begin preparing your final files.'))return;document.getElementById('approveOk').style.display='block';const f=document.createElement('form');f.method='POST';f.action='https://formsubmit.co/requests@rchsites.com';f.style.display='none';const d={'_subject':'\u2705 DESIGN APPROVED \u2014 '+(proj?proj.name:'Client'),'_template':'table','_captcha':'false','Project':proj?proj.name:'\u2013','Action':'Design Approved','Timestamp':new Date().toLocaleString()};Object.entries(d).forEach(([k,v])=>{const i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;f.appendChild(i)});document.body.appendChild(f);f.submit()}
 
-/* ═══ FILE UPLOAD ═══ */
-const dropZone = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
-
-['dragenter','dragover'].forEach(e => {
-  dropZone.addEventListener(e, ev => { ev.preventDefault(); dropZone.classList.add('drag-over'); });
-});
-['dragleave','drop'].forEach(e => {
-  dropZone.addEventListener(e, ev => { ev.preventDefault(); dropZone.classList.remove('drag-over'); });
-});
-dropZone.addEventListener('drop', ev => addFiles([...ev.dataTransfer.files]));
-dropZone.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', () => { addFiles([...fileInput.files]); fileInput.value=''; });
-
-function addFiles(files) {
-  files.forEach(f => {
-    if (f.size > 25*1024*1024) { alert(f.name+' is over 25 MB.'); return; }
-    if (!uploadFiles.find(u => u.name===f.name && u.size===f.size)) uploadFiles.push(f);
-  });
-  renderFiles();
-}
-
-function removeFile(i) { uploadFiles.splice(i,1); renderFiles(); }
-
-function renderFiles() {
-  const list = document.getElementById('fileList');
-  const btn = document.getElementById('sendFilesBtn');
-  list.innerHTML = '';
-  uploadFiles.forEach((f,i) => {
-    const isImg=f.type.startsWith('image/'), isVid=f.type.startsWith('video/');
-    const size = f.size<1024*1024 ? (f.size/1024).toFixed(0)+' KB' : (f.size/(1024*1024)).toFixed(1)+' MB';
-    const icon = isImg?'🖼':isVid?'🎬':'📄';
-    const cls = isImg?'img':isVid?'vid':'';
-    list.innerHTML += `<li class="file-item"><div class="fi-info"><div class="fi-icon ${cls}">${icon}</div><div><h4>${f.name}</h4><span class="fi-meta">${size}</span></div></div><button class="fi-remove" onclick="removeFile(${i})">×</button></li>`;
-  });
-  btn.disabled = uploadFiles.length===0;
-}
-
-function sendFiles() {
-  if (!uploadFiles.length) return;
-  const form = document.getElementById('uploadForm');
-  document.getElementById('uploadSubject').value = 'Client File Upload — '+(proj?proj.name:'Portal');
-  document.getElementById('uploadName').value = document.getElementById('uploaderName').value||'Not provided';
-  document.getElementById('uploadNotes').value = document.getElementById('uploaderNotes').value||'None';
-  form.querySelectorAll('input[type="file"]').forEach(el=>el.remove());
-  const dt = new DataTransfer();
-  uploadFiles.forEach(f=>dt.items.add(f));
-  const fi = document.createElement('input');
-  fi.type='file';fi.name='attachment';fi.multiple=true;fi.files=dt.files;fi.style.display='none';
-  form.appendChild(fi);
-  form.style.display='block';form.submit();
-  document.getElementById('uploadOk').style.display='block';
-  uploadFiles=[];renderFiles();
-}
-
-/* ═══ APPROVE ═══ */
-function doApprove() {
-  if (!confirm('Are you sure you want to approve? We\u2019ll begin preparing your final files.')) return;
-  document.getElementById('approveOk').style.display = 'block';
-  const f = document.createElement('form');
-  f.method='POST';f.action='https://formsubmit.co/requests@rchsites.com';f.style.display='none';
-  const d = {'_subject':'\u2705 DESIGN APPROVED \u2014 '+(proj?proj.name:'Client'),'_template':'table','_captcha':'false','Project':proj?proj.name:'\u2013','Action':'Design Approved','Timestamp':new Date().toLocaleString()};
-  Object.entries(d).forEach(([k,v])=>{const i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;f.appendChild(i)});
-  document.body.appendChild(f);f.submit();
-}
-
-/* ═══ SHAKE ═══ */
-const shakeStyle = document.createElement('style');
-shakeStyle.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)
+if(location.search.includes('feedback=sent'))setTimeout(()=>{const ok=document.getElementById('fbOk');if(ok)ok.style.display='block'},500);
+if(location.search.includes('upload=sent'))setTimeout(()=>{const ok=document.getElementById('uploadOk');if(ok)ok.style.display='block'},500);
+</script>
+</body>
+</html>

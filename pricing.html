@@ -7,13 +7,11 @@
 <link rel="stylesheet" href="style.css">
 <style>
 .p-hero{padding:10rem 0 4rem;text-align:center}
-.p-hero .sec-sub{margin:1rem auto 0}
 
-/* pricing cards */
 .p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;padding:2rem 0 6rem;max-width:1100px;margin:0 auto}
 .p-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:2.2rem 1.8rem;display:flex;flex-direction:column;transition:.3s;position:relative}
 .p-card:hover{border-color:var(--border-blue);box-shadow:var(--glow-sm);transform:translateY(-4px)}
-.p-card.feat{border-color:var(--border-blue);background:linear-gradient(175deg,var(--bg-card) 0%,rgba(74,143,231,0.03) 100%);transform:scale(1.02);z-index:2;box-shadow:var(--glow-sm)}
+.p-card.feat{border-color:var(--border-blue);background:linear-gradient(175deg,var(--bg-card) 0%,var(--blue-faint) 100%);transform:scale(1.02);z-index:2;box-shadow:var(--glow-sm)}
 .p-card.feat:hover{transform:scale(1.02) translateY(-4px)}
 .pop-tag{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-h);font-size:.45rem;letter-spacing:.15em;text-transform:uppercase;background:var(--blue);color:#fff;padding:.25rem .7rem;border-radius:100px}
 .p-tier{font-family:var(--font-h);font-size:.5rem;text-transform:uppercase;letter-spacing:.18em;color:var(--blue);margin-bottom:.8rem}
@@ -28,7 +26,6 @@
 .p-card.feat .p-cta{background:var(--blue);color:#fff;border-color:var(--blue)}
 .p-card.feat .p-cta:hover{background:var(--blue-bright);box-shadow:0 6px 24px rgba(74,143,231,0.25)}
 
-/* comparison */
 .compare{padding:4rem 0;border-top:1px solid var(--border)}
 .compare table{width:100%;border-collapse:collapse;margin-top:2rem}
 .compare th,.compare td{padding:.9rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-size:.82rem}
@@ -36,12 +33,12 @@
 .compare th{font-weight:600;color:var(--text)}
 .compare td{color:var(--text-mid)}
 .compare td:not(:first-child),.compare thead th:not(:first-child){text-align:center}
-.hl-col{background:rgba(74,143,231,0.03)}
+.hl-col{background:var(--blue-faint)}
 .t-check{color:var(--blue);font-weight:700}.t-x{color:var(--text-faint)}
 
-/* upkeep */
-.upkeep{padding:6rem 0;border-top:1px solid var(--border);background:var(--bg-card)}
+.upkeep{padding:6rem 0;border-top:1px solid var(--border);background:var(--bg-card);transition:background .4s}
 .up-note{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--blue-faint);border:1px solid var(--border-blue);border-radius:100px;font-size:.72rem;color:var(--blue-bright);font-weight:600;margin-bottom:1.5rem}
+[data-theme="light"] .up-note{color:var(--blue)}
 .up-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
 .up-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:1.8rem;transition:.3s}
 .up-card:hover{border-color:var(--border-blue);box-shadow:var(--glow-sm)}
@@ -53,7 +50,10 @@
 .up-feats li{font-size:.8rem;color:var(--text-mid);display:flex;align-items:center;gap:.5rem}
 .up-feats li::before{content:'—';color:var(--blue);font-weight:700}
 
-/* faq */
+.up-section-label{font-family:var(--font-h);font-size:.55rem;text-transform:uppercase;letter-spacing:.18em;color:var(--text-faint);margin-bottom:1.2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+.up-section-label::before{content:'';width:16px;height:1px;background:var(--text-faint)}
+.up-section-label:first-of-type{margin-top:0;padding-top:0;border-top:none}
+
 .faq{padding:6rem 0;border-top:1px solid var(--border)}
 .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
 .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;cursor:pointer;transition:.3s}
@@ -82,7 +82,7 @@
       <line x1="12" y1="33" x2="108" y2="33" class="globe-line" stroke-width="0.8"/>
       <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
       <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
-      <rect x="28" y="19.5" width="64" height="12" rx="1" fill="var(--bg)" opacity="0.85"/>
+      <rect x="28" y="19.5" width="64" height="12" rx="1" class="logo-bg" opacity="0.9"/>
       <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
       <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
       <text x="60" y="29" text-anchor="middle" class="logo-text" font-family="Michroma, sans-serif" font-size="11" font-weight="400" letter-spacing="2">RCH</text>
@@ -166,11 +166,20 @@
   <div class="up-note rv">⚡ Separate, optional service — not required</div>
   <div class="eyebrow rv">Add-On</div>
   <h2 class="sec-h rv">Monthly <span class="hl">upkeep.</span></h2>
-  <p class="sec-sub rv">Don't want to manage it yourself? We'll keep your site updated, secure, and running. Cancel anytime.</p>
+  <p class="sec-sub rv">Don't want to manage it yourself? We'll keep your site updated, secure, and running. Cancel anytime. Domain purchase not included.</p>
+
+  <div class="up-section-label">Static Sites</div>
   <div class="up-grid">
-    <div class="up-card rv"><div class="up-tier">Basic</div><div class="up-price">$20 <span>/mo</span></div><div class="up-desc">Monitoring and minor fixes — peace of mind.</div><ul class="up-feats"><li>Monthly health check</li><li>Bug fixes &amp; broken links</li><li>Security patches</li><li>Email support</li></ul></div>
-    <div class="up-card rv"><div class="up-tier">Standard</div><div class="up-price">$30 <span>/mo</span></div><div class="up-desc">Active maintenance — content tweaks and ongoing care.</div><ul class="up-feats"><li>Everything in Basic</li><li>Text &amp; image updates (2/mo)</li><li>Performance monitoring</li><li>Priority email support</li></ul></div>
-    <div class="up-card rv"><div class="up-tier">Priority</div><div class="up-price">$50 <span>/mo</span></div><div class="up-desc">Full-service — your site evolves with your business.</div><ul class="up-feats"><li>Everything in Standard</li><li>Unlimited content updates</li><li>Layout &amp; design adjustments</li><li>Monthly analytics report</li><li>Same-day response</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Basic</div><div class="up-price">$45 <span>/mo</span></div><div class="up-desc">We host your site for you. Monitoring and minor fixes — peace of mind.</div><ul class="up-feats"><li>Monthly health check</li><li>Bug fixes &amp; broken links</li><li>Security patches</li><li>Email support</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Standard</div><div class="up-price">$75 <span>/mo</span></div><div class="up-desc">Active maintenance — content tweaks and ongoing care.</div><ul class="up-feats"><li>Everything in Basic</li><li>Text &amp; image updates (2/mo)</li><li>Performance monitoring</li><li>Priority email support</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Priority</div><div class="up-price">$100 <span>/mo</span></div><div class="up-desc">Full-service — your site evolves with your business.</div><ul class="up-feats"><li>Everything in Standard</li><li>Unlimited content updates</li><li>Layout &amp; design adjustments</li><li>Monthly analytics report</li><li>Same-day response</li></ul></div>
+  </div>
+
+  <div class="up-section-label">Dynamic / Portal Sites</div>
+  <div class="up-grid">
+    <div class="up-card rv"><div class="up-tier">Basic</div><div class="up-price">$50 <span>/mo</span></div><div class="up-desc">We host your site for you. Monitoring and minor fixes — peace of mind.</div><ul class="up-feats"><li>Monthly health check</li><li>Bug fixes &amp; broken links</li><li>Security patches</li><li>Limited portal support</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Standard</div><div class="up-price">$90 <span>/mo</span></div><div class="up-desc">Active maintenance — content tweaks and ongoing care.</div><ul class="up-feats"><li>Everything in Basic</li><li>1 revision round per month</li><li>Performance monitoring</li><li>Full portal support</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Priority</div><div class="up-price">$120 <span>/mo</span></div><div class="up-desc">Full-service — your site evolves with your business.</div><ul class="up-feats"><li>Everything in Standard</li><li>1 revision round per week</li><li>Layout &amp; design adjustments</li><li>Monthly analytics report</li><li>Same-day portal support</li></ul></div>
   </div>
 </div></section>
 
@@ -187,11 +196,14 @@
   </div>
 </div></section>
 
-<footer>
-  <div class="f-grid">
-    <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
-    <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
-    <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-    <div class="f-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#5220372327372126211220313a213b2637217c313d3f"><span class="__cf_email__" data-cfemail="a4d6c1d5d1c1d7d0d7e4d6c7ccd7cdd0c1d78ac7cbc9">[email&#160;protected]</span></a><a href="request.html">Project Request Form</a></div>
-  </div>
-  <div class="f-
+<footer><div class="f-grid">
+  <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
+  <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
+  <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
+  <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+</div><div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div></footer>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>

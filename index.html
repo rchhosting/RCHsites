@@ -92,7 +92,7 @@
       <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
       <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
       <!-- RCH text -->
-      <rect x="28" y="19.5" width="64" height="12" rx="1" fill="var(--bg)" opacity="0.85"/>
+      <rect x="28" y="19.5" width="64" height="12" rx="1" class="logo-bg" opacity="0.9"/>
       <!-- Dashes -->
       <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
       <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
@@ -166,11 +166,11 @@
   <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
   <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
   <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-  <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+  <div class="f-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#4b392e3a3e2e383f380b39282338223f2e3865282426"><span class="__cf_email__" data-cfemail="6113041014041215122113020912081504124f020e0c">[email&#160;protected]</span></a><a href="request.html">Project Request Form</a></div>
 </div><div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div></footer>
 
 </div>
-<script src="main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
 <script>
 const glc=document.getElementById('globeCanvas'),glx=glc.getContext('2d');let gF=0;
 function rG(){const s=Math.min(glc.parentElement.offsetWidth,520);glc.width=s*2;glc.height=s*2;glc.style.width=s+'px';glc.style.height=s+'px'}
@@ -180,10 +180,4 @@ function dG(){const w=glc.width,h=glc.height,cx=w/2,cy=h/2,r=Math.min(w,h)*.38,r
 glx.beginPath();glx.arc(cx,cy,r+4,0,Math.PI*2);glx.strokeStyle=c+'0.08)';glx.lineWidth=8;glx.stroke();
 glx.strokeStyle=c+'0.25)';glx.lineWidth=1.5;
 for(let i=-3;i<=3;i++){const lat=(i/4)*Math.PI*.45,ry=r*Math.cos(lat),yO=r*Math.sin(lat);glx.beginPath();for(let a=0;a<=100;a++){const an=(a/100)*Math.PI*2,x=cx+ry*Math.cos(an),y=cy-yO,z=ry*Math.sin(an),sc=1/(1+z*.0004),px=cx+(x-cx)*sc,py=cy+(y-cy)*sc;glx.globalAlpha=Math.sin(an)>-0.1?1:0.15;if(a===0)glx.moveTo(px,py);else glx.lineTo(px,py)}glx.globalAlpha=1;glx.stroke()}
-for(let i=0;i<12;i++){const lon=(i/12)*Math.PI*2+rot;glx.beginPath();for(let a=0;a<=60;a++){const lat=(a/60)*Math.PI-Math.PI/2,x=r*Math.cos(lat)*Math.cos(lon),y=r*Math.sin(lat),z=r*Math.cos(lat)*Math.sin(lon),f=Math.sin(lon);glx.globalAlpha=Math.max(.05,f>-0.15?.2+f*.8:.05);if(a===0)glx.moveTo(cx+x,cy-y);else glx.lineTo(cx+x,cy-y)}glx.globalAlpha=1;glx.stroke()}
-glx.beginPath();glx.arc(cx,cy,r,0,Math.PI*2);glx.strokeStyle=c+'0.35)';glx.lineWidth=2;glx.stroke();
-glx.beginPath();glx.arc(cx,cy,3,0,Math.PI*2);glx.fillStyle=c+'0.5)';glx.fill();
-gF++;requestAnimationFrame(dG)}dG();
-</script>
-</body>
-</html>
+for(let i=0;i<12;i++){const lon=(i/12)*Math.PI*2+rot;glx.beginPath();for(let a=0;a<=60;a++){const lat=(a/60)*Math.PI-Math.PI/2,x=r*Math.cos(lat)*Math.cos(lon),y=r*Math.sin(lat),z=r*Math.cos(lat)*Math.sin(lon),f=Math.sin(lon);glx.globalAlpha=Math.max(.05,f>-0.15?.2+f*.8:.05);if(a===0)glx.moveTo(cx+x,cy-y);else glx.lineTo(cx+x,cy-y)}glx.globalAlpha=1;glx.stroke(

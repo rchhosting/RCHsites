@@ -58,6 +58,7 @@ nav.scrolled{box-shadow:0 1px 20px rgba(0,0,0,0.08)}
 .n-logo svg{height:32px;width:auto;transition:all .3s}
 .n-logo svg .globe-line{stroke:var(--logo-stroke);transition:stroke .4s}
 .n-logo svg .logo-text{fill:var(--logo-text);transition:fill .4s}
+.n-logo svg .logo-bg{fill:var(--bg);transition:fill .4s}
 .n-logo:hover svg{transform:scale(1.05)}
 .n-logo-text{font-family:var(--font-h);font-size:.7rem;letter-spacing:.12em;color:var(--text-faint);transition:color .4s}
 
