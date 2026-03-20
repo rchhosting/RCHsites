@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,13 +70,33 @@
 <div class="page">
 
 <nav>
-  <a href="index.html" class="n-logo">RCH<span>SITES</span></a>
+  <a href="index.html" class="n-logo">
+    <svg viewBox="0 0 120 50" height="32" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="60" cy="25" rx="52" ry="22" fill="none" class="globe-line" stroke-width="1.8"/>
+      <ellipse cx="60" cy="25" rx="20" ry="22" fill="none" class="globe-line" stroke-width="1"/>
+      <ellipse cx="60" cy="25" rx="38" ry="22" fill="none" class="globe-line" stroke-width="1"/>
+      <line x1="12" y1="17" x2="108" y2="17" class="globe-line" stroke-width="0.8"/>
+      <line x1="8" y1="25" x2="112" y2="25" class="globe-line" stroke-width="0.8"/>
+      <line x1="12" y1="33" x2="108" y2="33" class="globe-line" stroke-width="0.8"/>
+      <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
+      <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
+      <rect x="28" y="19.5" width="64" height="12" rx="1" fill="var(--bg)" opacity="0.85"/>
+      <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
+      <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
+      <text x="60" y="29" text-anchor="middle" class="logo-text" font-family="Michroma, sans-serif" font-size="11" font-weight="400" letter-spacing="2">RCH</text>
+    </svg>
+    <span class="n-logo-text">SITES</span>
+  </a>
   <button class="n-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="n-links">
     <a href="index.html">Home</a>
     <a href="pricing.html">Pricing</a>
     <a href="portal.html">Client Portal</a>
-    <a href="request.html" class="n-cta active">Start a Project</a>
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <a href="request.html" class="n-cta class="active"">Start a Project</a>
   </div>
 </nav>
 
@@ -92,7 +112,7 @@
           <div class="info-card"><div class="ic-icon">⏱</div><div class="ic-text"><h4>24-hour response</h4><p>Every request gets a personal reply within one business day.</p></div></div>
           <div class="info-card"><div class="ic-icon">💬</div><div class="ic-text"><h4>No commitment</h4><p>Submitting this form doesn't lock you in. It starts a conversation.</p></div></div>
           <div class="info-card"><div class="ic-icon">📦</div><div class="ic-text"><h4>What you get</h4><p>Clean HTML files, an instruction pamphlet, and Client Portal access during the build.</p></div></div>
-          <div class="info-card"><div class="ic-icon">📧</div><div class="ic-text"><h4>Prefer email?</h4><p>Reach us at requests@rchsites.com</p></div></div>
+          <div class="info-card"><div class="ic-icon">📧</div><div class="ic-text"><h4>Prefer email?</h4><p>Reach us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bac8dfcbcfdfc9cec9fac8d9d2c9d3cedfc994d9d5d7">[email&#160;protected]</a></p></div></div>
         </div>
       </div>
 
@@ -147,27 +167,14 @@
     <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
     <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
     <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-    <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+    <div class="f-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#a4d6c1d5d1c1d7d0d7e4d6c7ccd7cdd0c1d78ac7cbc9"><span class="__cf_email__" data-cfemail="84f6e1f5f1e1f7f0f7c4f6e7ecf7edf0e1f7aae7ebe9">[email&#160;protected]</span></a><a href="request.html">Project Request Form</a></div>
   </div>
   <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
 </footer>
 
 </div>
-<script src="main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
 <script>
 const form=document.getElementById('requestForm'),successEl=document.getElementById('formSuccess');
 form.addEventListener('submit',e=>{
-  e.preventDefault();
-  const btn=form.querySelector('.submit-btn');
-  btn.textContent='Sending…';btn.disabled=true;
-  setTimeout(()=>{
-    form.style.display='none';
-    document.querySelector('.form-title').style.display='none';
-    document.querySelector('.form-sub').style.display='none';
-    successEl.classList.add('active');
-  },800);
-});
-</script>
-<script src="chatbot-widget.js"></script>
-</body>
-</html>
+  e

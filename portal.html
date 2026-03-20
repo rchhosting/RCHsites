@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,12 +165,32 @@
 <div class="page">
 
 <nav>
-  <a href="index.html" class="n-logo">RCH<span>SITES</span></a>
+  <a href="index.html" class="n-logo">
+    <svg viewBox="0 0 120 50" height="32" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="60" cy="25" rx="52" ry="22" fill="none" class="globe-line" stroke-width="1.8"/>
+      <ellipse cx="60" cy="25" rx="20" ry="22" fill="none" class="globe-line" stroke-width="1"/>
+      <ellipse cx="60" cy="25" rx="38" ry="22" fill="none" class="globe-line" stroke-width="1"/>
+      <line x1="12" y1="17" x2="108" y2="17" class="globe-line" stroke-width="0.8"/>
+      <line x1="8" y1="25" x2="112" y2="25" class="globe-line" stroke-width="0.8"/>
+      <line x1="12" y1="33" x2="108" y2="33" class="globe-line" stroke-width="0.8"/>
+      <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
+      <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
+      <rect x="28" y="19.5" width="64" height="12" rx="1" fill="var(--bg)" opacity="0.85"/>
+      <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
+      <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
+      <text x="60" y="29" text-anchor="middle" class="logo-text" font-family="Michroma, sans-serif" font-size="11" font-weight="400" letter-spacing="2">RCH</text>
+    </svg>
+    <span class="n-logo-text">SITES</span>
+  </a>
   <button class="n-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="n-links">
     <a href="index.html">Home</a>
     <a href="pricing.html">Pricing</a>
     <a href="portal.html" class="active">Client Portal</a>
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
     <a href="request.html" class="n-cta">Start a Project</a>
   </div>
 </nav>
@@ -267,7 +287,7 @@
           <div class="step-row"><div class="step-n">02</div><div><h4>Batch your changes</h4><p>One submission = one revision round.</p></div></div>
           <div class="step-row"><div class="step-n">03</div><div><h4>We implement</h4><p>Updates live in 24–48 hours.</p></div></div>
           <div class="step-row"><div class="step-n">04</div><div><h4>Approve</h4><p>Happy? Lock it in on the Approve tab.</p></div></div>
-          <div class="email-card"><div class="lbl">Prefer email?</div><a href="mailto:requests@rchsites.com">requests@rchsites.com</a></div>
+          <div class="email-card"><div class="lbl">Prefer email?</div><a href="/cdn-cgi/l/email-protection#780a1d090d1d0b0c0b380a1b100b110c1d0b561b1715"><span class="__cf_email__" data-cfemail="4f3d2a3e3a2a3c3b3c0f3d2c273c263b2a3c612c2022">[email&#160;protected]</span></a></div>
         </div>
       </div>
     </div>
@@ -298,7 +318,7 @@
         <div class="form-field"><label>Your Name</label><input type="text" id="uploaderName" placeholder="So we know who sent these"></div>
         <div class="form-field"><label>Notes (optional)</label><textarea id="uploaderNotes" placeholder="e.g. 'Use the blue logo on the homepage hero'" style="min-height:70px"></textarea></div>
         <button class="btn-dark-solid btn-full" id="sendFilesBtn" onclick="sendFiles()" disabled>Send Media →</button>
-        <div class="upload-note" style="margin-top:14px">Media is sent directly to our team at requests@rchsites.com. For files over 25 MB, email us directly.</div>
+        <div class="upload-note" style="margin-top:14px">Media is sent directly to our team at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c5e495d59495f585f6c5e4f445f4558495f024f4341">[email&#160;protected]</a>. For files over 25 MB, email us directly.</div>
         <div class="fb-ok" id="uploadOk" style="margin-top:18px"><h3>✓ Media sent</h3><p>We've received your uploads and will incorporate them into your site.</p></div>
       </div>
     </div>
@@ -344,13 +364,13 @@
     <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
     <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
     <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-    <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+    <div class="f-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#5c2e392d29392f282f1c2e3f342f3528392f723f3331"><span class="__cf_email__" data-cfemail="f08295818595838483b08293988399849583de939f9d">[email&#160;protected]</span></a><a href="request.html">Project Request Form</a></div>
   </div>
   <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
 </footer>
 
 </div>
-<script src="main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
 <script>
 /* ═══ PROJECTS ═══ */
 const PROJECTS = {
@@ -509,12 +529,4 @@ function doApprove() {
 
 /* ═══ SHAKE ═══ */
 const shakeStyle = document.createElement('style');
-shakeStyle.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}';
-document.head.appendChild(shakeStyle);
-
-/* ═══ FEEDBACK SENT CHECK ═══ */
-if (location.search.includes('feedback=sent')) { setTimeout(()=>{ const ok=document.getElementById('fbOk'); if(ok)ok.style.display='block'; },500); }
-if (location.search.includes('upload=sent')) { setTimeout(()=>{ const ok=document.getElementById('uploadOk'); if(ok)ok.style.display='block'; },500); }
-</script>
-</body>
-</html>
+shakeStyle.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)
