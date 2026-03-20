@@ -176,5 +176,6 @@ pwInput.addEventListener('keydown',e=>{if(e.key==='Enter')attemptLogin()});
 logoutBtn.addEventListener('click',()=>{previewEl.classList.remove('active');loginEl.style.display='';pwInput.value='';errorEl.textContent='';submitBtn.textContent='View Preview';submitBtn.disabled=false});
 refreshBtn.addEventListener('click',()=>{const f=frameEl.querySelector('iframe');if(f)f.src=f.src});
 </script>
+<script src="chatbot-widget.js"></script>
 </body>
 </html>
