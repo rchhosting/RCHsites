@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,12 +72,32 @@
 <div class="page">
 
 <nav>
-  <a href="index.html" class="n-logo">RCH<span>SITES</span></a>
+  <a href="index.html" class="n-logo">
+    <svg viewBox="0 0 120 50" height="32" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="60" cy="25" rx="52" ry="22" fill="none" class="globe-line" stroke-width="1.8"/>
+      <ellipse cx="60" cy="25" rx="20" ry="22" fill="none" class="globe-line" stroke-width="1"/>
+      <ellipse cx="60" cy="25" rx="38" ry="22" fill="none" class="globe-line" stroke-width="1"/>
+      <line x1="12" y1="17" x2="108" y2="17" class="globe-line" stroke-width="0.8"/>
+      <line x1="8" y1="25" x2="112" y2="25" class="globe-line" stroke-width="0.8"/>
+      <line x1="12" y1="33" x2="108" y2="33" class="globe-line" stroke-width="0.8"/>
+      <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
+      <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
+      <rect x="28" y="19.5" width="64" height="12" rx="1" class="logo-bg"/>
+      <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
+      <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
+      <text x="60" y="29" text-anchor="middle" class="logo-text" font-family="Michroma, sans-serif" font-size="11" font-weight="400" letter-spacing="2">RCH</text>
+    </svg>
+    <span class="n-logo-text">SITES</span>
+  </a>
   <button class="n-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="n-links">
     <a href="index.html">Home</a>
     <a href="pricing.html" class="active">Pricing</a>
     <a href="portal.html">Client Portal</a>
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
     <a href="request.html" class="n-cta">Start a Project</a>
   </div>
 </nav>
@@ -108,7 +128,7 @@
         <div class="p-amount"><sup>$</sup>1,500</div>
         <div class="p-label">One-time payment</div>
         <ul class="p-features">
-          <li>Up to 7 pages</li><li>Mobile-responsive design</li><li>3 revision rounds</li><li>Contact form integration</li><li>Basic SEO setup</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
+          <li>Up to 7 pages</li><li>Mobile-responsive design</li><li>2 revision rounds</li><li>Contact form integration</li><li>Basic SEO setup</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
         </ul>
         <a href="request.html" class="p-cta">Get Started</a>
       </div>
@@ -117,7 +137,7 @@
         <div class="p-amount"><sup>$</sup>2,500</div>
         <div class="p-label">One-time payment</div>
         <ul class="p-features">
-          <li>Unlimited pages</li><li>Mobile-responsive design</li><li>Unlimited revisions</li><li>Advanced animations &amp; interactions</li><li>Full SEO &amp; performance optimization</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
+          <li>Unlimited pages</li><li>Mobile-responsive design</li><li>5 revision rounds</li><li>Advanced animations &amp; interactions</li><li>Full SEO &amp; performance optimization</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
         </ul>
         <a href="request.html" class="p-cta">Get Started</a>
       </div>
@@ -131,7 +151,7 @@
     <thead><tr><th>Feature</th><th>Starter</th><th class="hl-col">Professional</th><th>Premium</th></tr></thead>
     <tbody>
       <tr><th>Pages</th><td>Up to 3</td><td class="hl-col">Up to 7</td><td>Unlimited</td></tr>
-      <tr><th>Revision Rounds</th><td>1</td><td class="hl-col">3</td><td>Unlimited</td></tr>
+      <tr><th>Revision Rounds</th><td>1</td><td class="hl-col">2</td><td>5</td></tr>
       <tr><th>Contact Form</th><td><span class="t-x">—</span></td><td class="hl-col"><span class="t-check">✓</span></td><td><span class="t-check">✓</span></td></tr>
       <tr><th>SEO Setup</th><td><span class="t-x">—</span></td><td class="hl-col">Basic</td><td>Full</td></tr>
       <tr><th>Animations</th><td>Standard</td><td class="hl-col">Standard</td><td>Advanced / Custom</td></tr>
@@ -146,7 +166,7 @@
   <div class="up-note rv">⚡ Separate, optional service — not required</div>
   <div class="eyebrow rv">Add-On</div>
   <h2 class="sec-h rv">Monthly <span class="hl">upkeep.</span></h2>
-  <p class="sec-sub rv">Don't want to manage it yourself? We'll keep your site updated, secure, and running. Cancel anytime. Domain purchase not included.</p>
+  <p class="sec-sub rv">Want more revision rounds? Don't want to manage it yourself? We'll keep your site updated, secure, and running. Cancel anytime. Domain purchase not included.</p>
   <div class="up-grid">
     <div class="up-card rv"><div class="up-tier">Basic</div><div class="up-price">$50 <span>/mo</span></div><div class="up-desc">We host your site for you. Monitoring and minor fixes — peace of mind.</div><ul class="up-feats"><li>Monthly health check</li><li>Bug fixes &amp; broken links</li><li>Security patches</li><li>Limited portal support</li></ul></div>
     <div class="up-card rv"><div class="up-tier">Standard</div><div class="up-price">$90 <span>/mo</span></div><div class="up-desc">Active maintenance — content tweaks and ongoing care.</div><ul class="up-feats"><li>Everything in Basic</li><li>1 revision round per month</li><li>Performance monitoring</li><li>Full portal support</li></ul></div>
@@ -172,12 +192,6 @@
     <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
     <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
     <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-    <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+    <div class="f-col"><h4>Contact</h4><a href="/cdn-cgi/l/email-protection#691b0c181c0c1a1d1a291b0a011a001d0c1a470a0604"><span class="__cf_email__" data-cfemail="7507100400100601063507161d061c0110065b161a18">[email&#160;protected]</span></a><a href="request.html">Project Request Form</a></div>
   </div>
-  <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
-</footer>
-
-</div>
-<script src="main.js"></script>
-</body>
-</html>
+  <div class="f-
