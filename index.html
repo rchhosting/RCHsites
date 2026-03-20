@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,22 +18,22 @@
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem .35rem .6rem;background:var(--blue-faint);color:var(--blue-bright);border:1px solid var(--border-blue);border-radius:100px;font-size:.7rem;font-weight:600}
 .hero-badge .dot{width:6px;height:6px;background:var(--blue);border-radius:50%;box-shadow:0 0 8px var(--blue);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--blue)}50%{opacity:.5;box-shadow:0 0 16px var(--blue)}}
-[data-theme="light"] .hero-badge{color:var(--blue)}
 .hero h1{font-family:var(--font-h);font-size:clamp(2rem,4.5vw,3.6rem);font-weight:400;letter-spacing:.02em;line-height:1.2;margin-top:2rem;text-transform:uppercase}
 .hero h1 .hl{color:var(--blue);position:relative}
 .hero h1 .hl::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent)}
 .hero-sub{font-size:1.05rem;color:var(--text-mid);max-width:440px;line-height:1.75;margin:1.8rem 0 2.5rem}
 .hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
 .quick-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2.5rem}
-.qlink{display:flex;align-items:center;gap:.4rem;padding:.45rem .9rem;background:var(--toggle-bg);border:1px solid var(--border);border-radius:100px;font-size:.72rem;font-weight:500;color:var(--text-soft);transition:.2s}
+.qlink{display:flex;align-items:center;gap:.4rem;padding:.45rem .9rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:100px;font-size:.72rem;font-weight:500;color:var(--text-soft);transition:.2s}
 .qlink:hover{border-color:var(--border-blue);color:var(--blue);background:var(--blue-faint)}
 .hero-globe{position:relative;display:flex;align-items:center;justify-content:center;animation:globeIn 1.2s cubic-bezier(.16,1,.3,1) .5s both}
 @keyframes globeIn{from{opacity:0;transform:scale(.7) rotate(-15deg)}to{opacity:1;transform:scale(1) rotate(0)}}
 #globeCanvas{width:100%;max-width:520px;aspect-ratio:1}
-.globe-glow{position:absolute;width:60%;height:60%;top:20%;left:20%;background:radial-gradient(circle,var(--blue-glow) 0%,transparent 70%);pointer-events:none;animation:gPulse 4s ease-in-out infinite}
+.globe-glow{position:absolute;width:60%;height:60%;top:20%;left:20%;background:radial-gradient(circle,rgba(74,143,231,0.1) 0%,transparent 70%);pointer-events:none;animation:gPulse 4s ease-in-out infinite}
 @keyframes gPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
 
-.process{padding:8rem 0;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .4s}
+/* process */
+.process{padding:8rem 0;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem}
 .step{padding:2.5rem 2rem;border-left:1px solid var(--border);position:relative;transition:.35s}
 .step:first-child{border-left:none}
@@ -42,16 +42,18 @@
 .step:hover{background:var(--blue-faint)}
 .step:hover .snum{color:var(--blue);text-shadow:0 0 20px var(--blue-glow)}
 .snum{font-family:var(--font-h);font-size:1.8rem;color:var(--bg-surface);line-height:1;margin-bottom:1.3rem;transition:.3s;letter-spacing:.05em}
-[data-theme="light"] .snum{color:var(--navy)}
 .step h3{font-family:var(--font-h);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
 .step p{font-size:.84rem;color:var(--text-soft);line-height:1.7}
 
+/* features */
 .features{display:grid;grid-template-columns:1fr 1fr}
 .feat{padding:clamp(3rem,6vw,5.5rem);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:.3s;min-height:380px}
 .feat-1{background:var(--navy)}.feat-2{background:var(--blue)}.feat-3{background:var(--bg-card2);border-right:1px solid var(--border)}.feat-4{background:var(--bg-surface)}
-[data-theme="light"] .feat-1{background:#1A2744}[data-theme="light"] .feat-2{background:var(--blue)}[data-theme="light"] .feat-4{background:#3D5A80}
 .feat .f-tag{display:inline-block;font-family:var(--font-h);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;margin-bottom:1.2rem;width:fit-content}
-.feat-1 .f-tag{background:rgba(74,143,231,0.15);color:var(--blue-bright)}.feat-2 .f-tag{background:rgba(255,255,255,0.15);color:#fff}.feat-3 .f-tag{background:var(--blue-faint);color:var(--blue);border:1px solid var(--border-blue)}.feat-4 .f-tag{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8)}
+.feat-1 .f-tag{background:rgba(74,143,231,0.15);color:var(--blue-bright)}
+.feat-2 .f-tag{background:rgba(255,255,255,0.15);color:#fff}
+.feat-3 .f-tag{background:var(--blue-faint);color:var(--blue);border:1px solid var(--border-blue)}
+.feat-4 .f-tag{background:rgba(255,255,255,0.05);color:var(--text-mid)}
 .feat .f-icon{font-size:2.2rem;margin-bottom:1.2rem;display:inline-block;transition:transform .3s}
 .feat:hover .f-icon{transform:scale(1.15) rotate(-5deg)}
 .feat h3{font-family:var(--font-h);font-size:clamp(.9rem,1.8vw,1.2rem);letter-spacing:.04em;text-transform:uppercase;line-height:1.4;margin-bottom:.8rem;color:#fff}
@@ -61,15 +63,28 @@
 .feat-deco{position:absolute;border-radius:50%;pointer-events:none}
 .feat-1 .feat-deco{width:300px;height:300px;border:1px solid rgba(74,143,231,0.08);bottom:-100px;right:-80px}
 .feat-2 .feat-deco{width:250px;height:250px;border:1px solid rgba(255,255,255,0.1);top:-60px;left:-50px}
-.feat-4 .feat-deco{width:200px;height:200px;border:1px solid rgba(255,255,255,0.08);bottom:-40px;right:-30px}
+.feat-4 .feat-deco{width:200px;height:200px;border:1px solid rgba(74,143,231,0.06);bottom:-40px;right:-30px}
 
+/* cta */
 .cta{padding:10rem 0;text-align:center;overflow:hidden}
-.cta::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,var(--blue-faint) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(74,143,231,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .cta-sub{font-size:1rem;color:var(--text-soft);max-width:380px;margin:1.5rem auto 2.5rem;line-height:1.7;position:relative;z-index:1}
 .cta-btns{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;position:relative;z-index:1}
 
-@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-btns,.quick-row{justify-content:center}.hero-globe{max-width:350px;margin:0 auto}.steps{grid-template-columns:1fr 1fr}.step{border-left:none!important;border-top:1px solid var(--border)}.step:nth-child(-n+2){border-top:none}.features{grid-template-columns:1fr}}
-@media(max-width:600px){.steps{grid-template-columns:1fr}.step{border-top:1px solid var(--border)}.step:first-child{border-top:none}.hero-btns{flex-direction:column;align-items:center}}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-btns,.quick-row{justify-content:center}
+  .hero-globe{max-width:350px;margin:0 auto}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border-left:none!important;border-top:1px solid var(--border)}.step:nth-child(-n+2){border-top:none}
+  .features{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .steps{grid-template-columns:1fr}
+  .step{border-top:1px solid var(--border)}.step:first-child{border-top:none}
+  .hero-btns{flex-direction:column;align-items:center}
+}
 </style>
 </head>
 <body>
@@ -77,38 +92,12 @@
 <div class="page">
 
 <nav>
-  <a href="index.html" class="n-logo">
-    <svg viewBox="0 0 120 50" height="32" xmlns="http://www.w3.org/2000/svg">
-      <!-- Globe wireframe -->
-      <ellipse cx="60" cy="25" rx="52" ry="22" fill="none" class="globe-line" stroke-width="1.8"/>
-      <!-- Longitude arcs -->
-      <ellipse cx="60" cy="25" rx="20" ry="22" fill="none" class="globe-line" stroke-width="1"/>
-      <ellipse cx="60" cy="25" rx="38" ry="22" fill="none" class="globe-line" stroke-width="1"/>
-      <!-- Latitude lines -->
-      <line x1="12" y1="17" x2="108" y2="17" class="globe-line" stroke-width="0.8"/>
-      <line x1="8" y1="25" x2="112" y2="25" class="globe-line" stroke-width="0.8"/>
-      <line x1="12" y1="33" x2="108" y2="33" class="globe-line" stroke-width="0.8"/>
-      <!-- Top/bottom arcs -->
-      <path d="M30 10 Q60 4 90 10" fill="none" class="globe-line" stroke-width="0.8"/>
-      <path d="M30 40 Q60 46 90 40" fill="none" class="globe-line" stroke-width="0.8"/>
-      <!-- RCH text -->
-      <rect x="28" y="19.5" width="64" height="12" rx="1" fill="var(--bg)" opacity="0.85"/>
-      <!-- Dashes -->
-      <line x1="30" y1="25.5" x2="36" y2="25.5" class="globe-line" stroke-width="1.8"/>
-      <line x1="84" y1="25.5" x2="90" y2="25.5" class="globe-line" stroke-width="1.8"/>
-      <text x="60" y="29" text-anchor="middle" class="logo-text" font-family="Michroma, sans-serif" font-size="11" font-weight="400" letter-spacing="2">RCH</text>
-    </svg>
-    <span class="n-logo-text">SITES</span>
-  </a>
+  <a href="index.html" class="n-logo">RCH<span>SITES</span></a>
   <button class="n-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="n-links">
     <a href="index.html" class="active">Home</a>
     <a href="pricing.html">Pricing</a>
     <a href="portal.html">Client Portal</a>
-    <button class="theme-toggle" aria-label="Toggle theme">
-      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-    </button>
     <a href="request.html" class="n-cta">Start a Project</a>
   </div>
 </nav>
@@ -128,23 +117,28 @@
       <a href="request.html" class="qlink">✉️ Get a Quote</a>
     </div>
   </div>
-  <div class="hero-globe"><div class="globe-glow"></div><canvas id="globeCanvas"></canvas></div>
+  <div class="hero-globe">
+    <div class="globe-glow"></div>
+    <canvas id="globeCanvas"></canvas>
+  </div>
 </section>
 
 <div class="marquee"><div class="mq-track">
   <div class="mq-item">Custom Design</div><div class="mq-item">Clean HTML</div><div class="mq-item">No Subscriptions</div><div class="mq-item">Full Ownership</div><div class="mq-item">Mobile Responsive</div><div class="mq-item">Client Portal</div><div class="mq-item">Custom Design</div><div class="mq-item">Clean HTML</div><div class="mq-item">No Subscriptions</div><div class="mq-item">Full Ownership</div><div class="mq-item">Mobile Responsive</div><div class="mq-item">Client Portal</div>
 </div></div>
 
-<section class="process"><div class="container">
-  <div class="eyebrow rv">How it works</div>
-  <h2 class="sec-h rv">Four steps from<br>idea to <span class="hl">handoff.</span></h2>
-  <div class="steps">
-    <div class="step rv"><div class="snum">01</div><h3>Discovery</h3><p>We talk about your vision. No jargon, no upselling — just a clear plan for what your site needs to do.</p></div>
-    <div class="step rv"><div class="snum">02</div><h3>Build</h3><p>You get a private password to preview your site in real-time through our Client Portal as it comes together.</p></div>
-    <div class="step rv"><div class="snum">03</div><h3>Revise</h3><p>We refine based on your feedback, within your plan's revision rounds. You approve, the design locks.</p></div>
-    <div class="step rv"><div class="snum">04</div><h3>Handoff</h3><p>You receive a clean HTML folder and an instruction pamphlet. Upload it anywhere — the files are yours.</p></div>
+<section class="process">
+  <div class="container">
+    <div class="eyebrow rv">How it works</div>
+    <h2 class="sec-h rv">Four steps from<br>idea to <span class="hl">handoff.</span></h2>
+    <div class="steps">
+      <div class="step rv"><div class="snum">01</div><h3>Discovery</h3><p>We talk about your vision. No jargon, no upselling — just a clear plan for what your site needs to do.</p></div>
+      <div class="step rv"><div class="snum">02</div><h3>Build</h3><p>You get a private password to preview your site in real-time through our Client Portal as it comes together.</p></div>
+      <div class="step rv"><div class="snum">03</div><h3>Revise</h3><p>We refine based on your feedback, within your plan's revision rounds. You approve, the design locks.</p></div>
+      <div class="step rv"><div class="snum">04</div><h3>Handoff</h3><p>You receive a clean HTML folder and an instruction pamphlet. Upload it anywhere — the files are yours.</p></div>
+    </div>
   </div>
-</div></section>
+</section>
 
 <section class="features">
   <div class="feat feat-1 rv-l"><div class="feat-deco"></div><span class="f-tag">What you get</span><span class="f-icon">📁</span><h3>Clean HTML files.<br>The whole site.</h3><p>An organized folder with your entire site — HTML, CSS, JavaScript, images. Upload it to any host on earth.</p></div>
@@ -162,27 +156,30 @@
   </div>
 </section>
 
-<footer><div class="f-grid">
-  <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
-  <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
-  <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
-  <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
-</div><div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div></footer>
+<footer>
+  <div class="f-grid">
+    <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
+    <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
+    <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
+    <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
+  </div>
+  <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
+</footer>
 
 </div>
 <script src="main.js"></script>
 <script>
+// ── GLOBE ──
 const glc=document.getElementById('globeCanvas'),glx=glc.getContext('2d');let gF=0;
 function rG(){const s=Math.min(glc.parentElement.offsetWidth,520);glc.width=s*2;glc.height=s*2;glc.style.width=s+'px';glc.style.height=s+'px'}
 rG();window.addEventListener('resize',rG);
-function getGlobeColor(){return document.documentElement.getAttribute('data-theme')==='light'?'rgba(45,106,196,':'rgba(74,143,231,'}
-function dG(){const w=glc.width,h=glc.height,cx=w/2,cy=h/2,r=Math.min(w,h)*.38,rot=gF*.004,c=getGlobeColor();glx.clearRect(0,0,w,h);
-glx.beginPath();glx.arc(cx,cy,r+4,0,Math.PI*2);glx.strokeStyle=c+'0.08)';glx.lineWidth=8;glx.stroke();
-glx.strokeStyle=c+'0.25)';glx.lineWidth=1.5;
+function dG(){const w=glc.width,h=glc.height,cx=w/2,cy=h/2,r=Math.min(w,h)*.38,rot=gF*.004;glx.clearRect(0,0,w,h);
+glx.beginPath();glx.arc(cx,cy,r+4,0,Math.PI*2);glx.strokeStyle='rgba(74,143,231,0.08)';glx.lineWidth=8;glx.stroke();
+glx.strokeStyle='rgba(74,143,231,0.25)';glx.lineWidth=1.5;
 for(let i=-3;i<=3;i++){const lat=(i/4)*Math.PI*.45,ry=r*Math.cos(lat),yO=r*Math.sin(lat);glx.beginPath();for(let a=0;a<=100;a++){const an=(a/100)*Math.PI*2,x=cx+ry*Math.cos(an),y=cy-yO,z=ry*Math.sin(an),sc=1/(1+z*.0004),px=cx+(x-cx)*sc,py=cy+(y-cy)*sc;glx.globalAlpha=Math.sin(an)>-0.1?1:0.15;if(a===0)glx.moveTo(px,py);else glx.lineTo(px,py)}glx.globalAlpha=1;glx.stroke()}
 for(let i=0;i<12;i++){const lon=(i/12)*Math.PI*2+rot;glx.beginPath();for(let a=0;a<=60;a++){const lat=(a/60)*Math.PI-Math.PI/2,x=r*Math.cos(lat)*Math.cos(lon),y=r*Math.sin(lat),z=r*Math.cos(lat)*Math.sin(lon),f=Math.sin(lon);glx.globalAlpha=Math.max(.05,f>-0.15?.2+f*.8:.05);if(a===0)glx.moveTo(cx+x,cy-y);else glx.lineTo(cx+x,cy-y)}glx.globalAlpha=1;glx.stroke()}
-glx.beginPath();glx.arc(cx,cy,r,0,Math.PI*2);glx.strokeStyle=c+'0.35)';glx.lineWidth=2;glx.stroke();
-glx.beginPath();glx.arc(cx,cy,3,0,Math.PI*2);glx.fillStyle=c+'0.5)';glx.fill();
+glx.beginPath();glx.arc(cx,cy,r,0,Math.PI*2);glx.strokeStyle='rgba(74,143,231,0.35)';glx.lineWidth=2;glx.stroke();
+glx.beginPath();glx.arc(cx,cy,3,0,Math.PI*2);glx.fillStyle='rgba(74,143,231,0.5)';glx.fill();
 gF++;requestAnimationFrame(dG)}dG();
 </script>
 </body>
