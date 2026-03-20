@@ -6,490 +6,181 @@
 <title>RCHsites — Web Design, Delivered.</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* ── HOME-SPECIFIC ── */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  padding: 6rem 2rem 4rem;
-  position: relative;
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:0 clamp(1.5rem,5vw,5rem);padding-top:64px;gap:2rem}
+.hero-text{padding:4rem 0;position:relative;z-index:2}
+.hero-text>*{animation:elIn .9s cubic-bezier(.16,1,.3,1) both}
+.hero-text>*:nth-child(1){animation-delay:.4s}
+.hero-text>*:nth-child(2){animation-delay:.55s}
+.hero-text>*:nth-child(3){animation-delay:.65s}
+.hero-text>*:nth-child(4){animation-delay:.75s}
+.hero-text>*:nth-child(5){animation-delay:.85s}
+@keyframes elIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem .35rem .6rem;background:var(--blue-faint);color:var(--blue-bright);border:1px solid var(--border-blue);border-radius:100px;font-size:.7rem;font-weight:600}
+.hero-badge .dot{width:6px;height:6px;background:var(--blue);border-radius:50%;box-shadow:0 0 8px var(--blue);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--blue)}50%{opacity:.5;box-shadow:0 0 16px var(--blue)}}
+.hero h1{font-family:var(--font-h);font-size:clamp(2rem,4.5vw,3.6rem);font-weight:400;letter-spacing:.02em;line-height:1.2;margin-top:2rem;text-transform:uppercase}
+.hero h1 .hl{color:var(--blue);position:relative}
+.hero h1 .hl::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent)}
+.hero-sub{font-size:1.05rem;color:var(--text-mid);max-width:440px;line-height:1.75;margin:1.8rem 0 2.5rem}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.quick-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2.5rem}
+.qlink{display:flex;align-items:center;gap:.4rem;padding:.45rem .9rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:100px;font-size:.72rem;font-weight:500;color:var(--text-soft);transition:.2s}
+.qlink:hover{border-color:var(--border-blue);color:var(--blue);background:var(--blue-faint)}
+.hero-globe{position:relative;display:flex;align-items:center;justify-content:center;animation:globeIn 1.2s cubic-bezier(.16,1,.3,1) .5s both}
+@keyframes globeIn{from{opacity:0;transform:scale(.7) rotate(-15deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+#globeCanvas{width:100%;max-width:520px;aspect-ratio:1}
+.globe-glow{position:absolute;width:60%;height:60%;top:20%;left:20%;background:radial-gradient(circle,rgba(74,143,231,0.1) 0%,transparent 70%);pointer-events:none;animation:gPulse 4s ease-in-out infinite}
+@keyframes gPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+
+/* process */
+.process{padding:8rem 0;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem}
+.step{padding:2.5rem 2rem;border-left:1px solid var(--border);position:relative;transition:.35s}
+.step:first-child{border-left:none}
+.step::before{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:var(--blue);transition:width .6s cubic-bezier(.22,1,.36,1)}
+.step:hover::before{width:100%}
+.step:hover{background:var(--blue-faint)}
+.step:hover .snum{color:var(--blue);text-shadow:0 0 20px var(--blue-glow)}
+.snum{font-family:var(--font-h);font-size:1.8rem;color:var(--bg-surface);line-height:1;margin-bottom:1.3rem;transition:.3s;letter-spacing:.05em}
+.step h3{font-family:var(--font-h);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
+.step p{font-size:.84rem;color:var(--text-soft);line-height:1.7}
+
+/* features */
+.features{display:grid;grid-template-columns:1fr 1fr}
+.feat{padding:clamp(3rem,6vw,5.5rem);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:.3s;min-height:380px}
+.feat-1{background:var(--navy)}.feat-2{background:var(--blue)}.feat-3{background:var(--bg-card2);border-right:1px solid var(--border)}.feat-4{background:var(--bg-surface)}
+.feat .f-tag{display:inline-block;font-family:var(--font-h);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;margin-bottom:1.2rem;width:fit-content}
+.feat-1 .f-tag{background:rgba(74,143,231,0.15);color:var(--blue-bright)}
+.feat-2 .f-tag{background:rgba(255,255,255,0.15);color:#fff}
+.feat-3 .f-tag{background:var(--blue-faint);color:var(--blue);border:1px solid var(--border-blue)}
+.feat-4 .f-tag{background:rgba(255,255,255,0.05);color:var(--text-mid)}
+.feat .f-icon{font-size:2.2rem;margin-bottom:1.2rem;display:inline-block;transition:transform .3s}
+.feat:hover .f-icon{transform:scale(1.15) rotate(-5deg)}
+.feat h3{font-family:var(--font-h);font-size:clamp(.9rem,1.8vw,1.2rem);letter-spacing:.04em;text-transform:uppercase;line-height:1.4;margin-bottom:.8rem;color:#fff}
+.feat-3 h3{color:var(--text)}
+.feat p{font-size:.88rem;line-height:1.7;opacity:.65;max-width:340px;color:#fff}
+.feat-3 p{color:var(--text-mid);opacity:1}
+.feat-deco{position:absolute;border-radius:50%;pointer-events:none}
+.feat-1 .feat-deco{width:300px;height:300px;border:1px solid rgba(74,143,231,0.08);bottom:-100px;right:-80px}
+.feat-2 .feat-deco{width:250px;height:250px;border:1px solid rgba(255,255,255,0.1);top:-60px;left:-50px}
+.feat-4 .feat-deco{width:200px;height:200px;border:1px solid rgba(74,143,231,0.06);bottom:-40px;right:-30px}
+
+/* cta */
+.cta{padding:10rem 0;text-align:center;overflow:hidden}
+.cta::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(74,143,231,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-sub{font-size:1rem;color:var(--text-soft);max-width:380px;margin:1.5rem auto 2.5rem;line-height:1.7;position:relative;z-index:1}
+.cta-btns{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;position:relative;z-index:1}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-btns,.quick-row{justify-content:center}
+  .hero-globe{max-width:350px;margin:0 auto}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border-left:none!important;border-top:1px solid var(--border)}.step:nth-child(-n+2){border-top:none}
+  .features{grid-template-columns:1fr}
 }
-
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(3.2rem, 8vw, 7rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  max-width: 850px;
-  position: relative;
-  z-index: 1;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 700;
-  position: relative;
-}
-
-.hero h1 em::after {
-  content: '';
-  position: absolute;
-  bottom: 4px; left: -2%; right: -2%;
-  height: 12px;
-  background: var(--accent-light);
-  z-index: -1;
-  border-radius: 4px;
-  transform: rotate(-1deg);
-}
-
-.hero-sub {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  max-width: 480px;
-  margin: 2rem auto 2.8rem;
-  line-height: 1.8;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-actions {
-  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-  position: relative; z-index: 1;
-}
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.5rem 1.2rem;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-bottom: 2.5rem;
-  background: var(--bg-white);
-  animation: badgeFade 0.8s ease both;
-}
-
-.hero-badge .pulse {
-  width: 7px; height: 7px;
-  background: var(--accent);
-  border-radius: 50%;
-  position: relative;
-}
-
-.hero-badge .pulse::after {
-  content: '';
-  position: absolute; inset: -3px;
-  border-radius: 50%;
-  border: 1.5px solid var(--accent);
-  animation: pingPulse 2s ease-in-out infinite;
-}
-
-@keyframes pingPulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.8); opacity: 0; }
-}
-
-@keyframes badgeFade {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ── QUICK LINK BAR ── */
-.quick-links {
-  margin-top: 5rem;
-  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  position: relative; z-index: 1;
-}
-
-.quick-link {
-  display: flex; align-items: center; gap: 0.6rem;
-  padding: 0.7rem 1.3rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-mid);
-  transition: all var(--transition);
-  cursor: pointer;
-}
-
-.quick-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.quick-link .ql-icon {
-  font-size: 1.1rem;
-}
-
-/* ── TRUST STRIP ── */
-.trust-strip {
-  padding: 3rem 0;
-  text-align: center;
-  overflow: hidden;
-}
-
-.trust-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--text-faint);
-  margin-bottom: 2rem;
-}
-
-.trust-items {
-  display: flex;
-  gap: 4rem;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.trust-item {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-faint);
-  opacity: 0.5;
-  letter-spacing: -0.02em;
-  transition: opacity 0.3s;
-}
-
-.trust-item:hover { opacity: 0.8; }
-
-/* ── PROCESS SECTION ── */
-.process-section { position: relative; }
-
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.process-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem 1.8rem;
-  position: relative;
-  overflow: hidden;
-  transition: all var(--transition);
-}
-
-.process-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent-light);
-}
-
-.process-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.process-card:hover::before { transform: scaleX(1); }
-
-.process-num {
-  font-family: var(--font-display);
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: var(--accent-light);
-  line-height: 1;
-  margin-bottom: 1.2rem;
-  transition: color 0.3s;
-}
-
-.process-card:hover .process-num { color: var(--accent); }
-
-.process-card h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
-}
-
-.process-card p {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-}
-
-/* ── FEATURES STRIP ── */
-.features-strip {
-  background: var(--bg-dark);
-  color: #fff;
-  padding: 5rem 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.features-strip .bg-shapes { opacity: 0.3; }
-.features-strip .bg-shape { background: rgba(196,93,62,0.15); }
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  position: relative; z-index: 1;
-}
-
-.feature-item {
-  text-align: center;
-  padding: 2rem;
-}
-
-.feature-icon {
-  width: 56px; height: 56px;
-  margin: 0 auto 1.2rem;
-  background: rgba(196,93,62,0.15);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.feature-item:hover .feature-icon {
-  transform: scale(1.1) rotate(-5deg);
-  background: rgba(196,93,62,0.25);
-}
-
-.feature-item h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-}
-
-.feature-item p {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.6;
-}
-
-/* ── CTA SECTION ── */
-.cta-section {
-  text-align: center;
-  padding: 8rem 0;
-}
-
-.cta-section h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-}
-
-.cta-section h2 em { font-style: italic; color: var(--accent); font-weight: 700; }
-
-.cta-section p {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  max-width: 440px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.7;
-}
-
-.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-@media (max-width: 900px) {
-  .process-grid { grid-template-columns: 1fr 1fr; }
-  .features-grid { grid-template-columns: 1fr; gap: 1rem; }
-}
-
-@media (max-width: 600px) {
-  .process-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; align-items: center; }
-  .quick-links { flex-direction: column; align-items: center; }
+@media(max-width:600px){
+  .steps{grid-template-columns:1fr}
+  .step{border-top:1px solid var(--border)}.step:first-child{border-top:none}
+  .hero-btns{flex-direction:column;align-items:center}
 }
 </style>
 </head>
 <body>
+<canvas id="gridCanvas"></canvas>
+<div class="page">
 
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">RCH<span>sites</span></a>
-  <button class="nav-toggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav-links">
+  <a href="index.html" class="n-logo">RCH<span>SITES</span></a>
+  <button class="n-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="n-links">
     <a href="index.html" class="active">Home</a>
     <a href="pricing.html">Pricing</a>
     <a href="portal.html">Client Portal</a>
-    <a href="request.html" class="nav-cta">Start a Project</a>
+    <a href="request.html" class="n-cta">Start a Project</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="bg-shapes">
-    <div class="bg-shape"></div>
-    <div class="bg-shape"></div>
-    <div class="bg-shape"></div>
+  <div class="hero-text">
+    <div class="hero-badge"><span class="dot"></span> Accepting new projects</div>
+    <h1>We build<br>your website.<br>You <span class="hl">own it.</span></h1>
+    <p class="hero-sub">Custom sites delivered as clean files you can host anywhere. No subscriptions. No lock-in. Just your site, in your hands.</p>
+    <div class="hero-btns">
+      <a href="request.html" class="btn btn-blue">Start a Project <span class="arr">→</span></a>
+      <a href="pricing.html" class="btn btn-wire">See Pricing</a>
+    </div>
+    <div class="quick-row">
+      <a href="portal.html" class="qlink">🔐 View My Site</a>
+      <a href="pricing.html" class="qlink">📋 Plans</a>
+      <a href="request.html" class="qlink">✉️ Get a Quote</a>
+    </div>
   </div>
-
-  <div class="hero-badge">
-    <span class="pulse"></span>
-    Currently accepting new projects
-  </div>
-
-  <h1 class="split-text">Websites built, delivered to you.</h1>
-
-  <p class="hero-sub">
-    Custom-designed sites handed off as clean HTML&mdash;yours to host, own, and control. No subscriptions. No lock-in.
-  </p>
-
-  <div class="hero-actions">
-    <a href="request.html" class="btn btn-primary magnetic">Start a Project <span class="arrow">→</span></a>
-    <a href="pricing.html" class="btn btn-outline magnetic">View Pricing</a>
-  </div>
-
-  <div class="quick-links">
-    <a href="portal.html" class="quick-link">
-      <span class="ql-icon">🔐</span>
-      View My Site
-    </a>
-    <a href="pricing.html" class="quick-link">
-      <span class="ql-icon">💰</span>
-      Pricing &amp; Plans
-    </a>
-    <a href="request.html" class="quick-link">
-      <span class="ql-icon">📝</span>
-      Request a Quote
-    </a>
+  <div class="hero-globe">
+    <div class="globe-glow"></div>
+    <canvas id="globeCanvas"></canvas>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="process-section">
-  <div class="container">
-    <div class="section-eyebrow">Process</div>
-    <h2 class="section-heading reveal">Four steps.<br>That's <em>it.</em></h2>
-    <p class="section-sub reveal">From first conversation to files in your hands.</p>
+<div class="marquee"><div class="mq-track">
+  <div class="mq-item">Custom Design</div><div class="mq-item">Clean HTML</div><div class="mq-item">No Subscriptions</div><div class="mq-item">Full Ownership</div><div class="mq-item">Mobile Responsive</div><div class="mq-item">Client Portal</div><div class="mq-item">Custom Design</div><div class="mq-item">Clean HTML</div><div class="mq-item">No Subscriptions</div><div class="mq-item">Full Ownership</div><div class="mq-item">Mobile Responsive</div><div class="mq-item">Client Portal</div>
+</div></div>
 
-    <div class="process-grid stagger">
-      <div class="process-card tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <div class="process-num">01</div>
-          <h3>Discovery</h3>
-          <p>We talk about your vision, your brand, and what the site needs to do. No jargon, no upselling.</p>
-        </div>
-      </div>
-      <div class="process-card tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <div class="process-num">02</div>
-          <h3>Design &amp; Build</h3>
-          <p>You get a private password to preview your site in the Client Portal as it comes together.</p>
-        </div>
-      </div>
-      <div class="process-card tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <div class="process-num">03</div>
-          <h3>Revise</h3>
-          <p>We refine until it's right — within your plan's revision rounds. Once approved, the design is locked.</p>
-        </div>
-      </div>
-      <div class="process-card tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <div class="process-num">04</div>
-          <h3>Handoff</h3>
-          <p>You receive a clean HTML folder and an instruction pamphlet covering hosting, editing, and going live.</p>
-        </div>
-      </div>
+<section class="process">
+  <div class="container">
+    <div class="eyebrow rv">How it works</div>
+    <h2 class="sec-h rv">Four steps from<br>idea to <span class="hl">handoff.</span></h2>
+    <div class="steps">
+      <div class="step rv"><div class="snum">01</div><h3>Discovery</h3><p>We talk about your vision. No jargon, no upselling — just a clear plan for what your site needs to do.</p></div>
+      <div class="step rv"><div class="snum">02</div><h3>Build</h3><p>You get a private password to preview your site in real-time through our Client Portal as it comes together.</p></div>
+      <div class="step rv"><div class="snum">03</div><h3>Revise</h3><p>We refine based on your feedback, within your plan's revision rounds. You approve, the design locks.</p></div>
+      <div class="step rv"><div class="snum">04</div><h3>Handoff</h3><p>You receive a clean HTML folder and an instruction pamphlet. Upload it anywhere — the files are yours.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features-strip">
-  <div class="bg-shapes">
-    <div class="bg-shape"></div>
-    <div class="bg-shape"></div>
-  </div>
-  <div class="container">
-    <div class="features-grid stagger">
-      <div class="feature-item reveal">
-        <div class="feature-icon">📁</div>
-        <h3>Clean HTML Files</h3>
-        <p>Your entire site in an organized folder — HTML, CSS, JS, images. Upload it anywhere.</p>
-      </div>
-      <div class="feature-item reveal">
-        <div class="feature-icon">📖</div>
-        <h3>Instruction Pamphlet</h3>
-        <p>A printed guide covering hosting, domain setup, basic edits, and who to call if you need help.</p>
-      </div>
-      <div class="feature-item reveal">
-        <div class="feature-icon">♾️</div>
-        <h3>Full Ownership</h3>
-        <p>The files are yours forever. No monthly fees to keep your site alive. No proprietary systems.</p>
-      </div>
-    </div>
+<section class="features">
+  <div class="feat feat-1 rv-l"><div class="feat-deco"></div><span class="f-tag">What you get</span><span class="f-icon">📁</span><h3>Clean HTML files.<br>The whole site.</h3><p>An organized folder with your entire site — HTML, CSS, JavaScript, images. Upload it to any host on earth.</p></div>
+  <div class="feat feat-2 rv-r"><div class="feat-deco"></div><span class="f-tag">Included</span><span class="f-icon">📖</span><h3>Instruction<br>pamphlet.</h3><p>A printed guide covering hosting setup, domain pointing, basic edits, and who to call if you're stuck.</p></div>
+  <div class="feat feat-3 rv-l"><span class="f-tag">During the build</span><span class="f-icon">🔐</span><h3>Client portal<br>preview access.</h3><p>Watch your site come together in real-time. Review progress and give feedback without email chains.</p></div>
+  <div class="feat feat-4 rv-r"><div class="feat-deco"></div><span class="f-tag">Forever</span><span class="f-icon">∞</span><h3>Full ownership.<br>No strings.</h3><p>No monthly fees to keep your site alive. No proprietary systems. No vendor lock-in, ever.</p></div>
+</section>
+
+<section class="cta">
+  <h2 class="sec-h rv" style="position:relative;z-index:1">Ready to get your<br><span class="hl">site built?</span></h2>
+  <p class="cta-sub rv">Tell us about your project. We'll be in touch within 24 hours.</p>
+  <div class="cta-btns rv">
+    <a href="request.html" class="btn btn-blue">Start a Project <span class="arr">→</span></a>
+    <a href="pricing.html" class="btn btn-wire">View Pricing</a>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <h2 class="reveal">Ready to get<br><em>your site</em> built?</h2>
-    <p class="reveal">Tell us about your project. We'll get back within 24 hours with a plan and a quote.</p>
-    <div class="cta-buttons reveal">
-      <a href="request.html" class="btn btn-primary magnetic">Start a Project <span class="arrow">→</span></a>
-      <a href="pricing.html" class="btn btn-outline magnetic">See Pricing</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">RCH<span>sites</span></div>
-        <p class="footer-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="portal.html">Client Portal</a>
-        <a href="request.html">Request a Quote</a>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Access</h4>
-        <a href="portal.html">View My Site</a>
-        <a href="pricing.html#upkeep">Monthly Upkeep</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:hello@rchsites.com">hello@rchsites.com</a>
-        <a href="request.html">Project Request Form</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 RCHsites. All rights reserved.</span>
-      <span>Opelika, Alabama</span>
-    </div>
+  <div class="f-grid">
+    <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
+    <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
+    <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
+    <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
   </div>
+  <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
 </footer>
 
+</div>
 <script src="main.js"></script>
+<script>
+// ── GLOBE ──
+const glc=document.getElementById('globeCanvas'),glx=glc.getContext('2d');let gF=0;
+function rG(){const s=Math.min(glc.parentElement.offsetWidth,520);glc.width=s*2;glc.height=s*2;glc.style.width=s+'px';glc.style.height=s+'px'}
+rG();window.addEventListener('resize',rG);
+function dG(){const w=glc.width,h=glc.height,cx=w/2,cy=h/2,r=Math.min(w,h)*.38,rot=gF*.004;glx.clearRect(0,0,w,h);
+glx.beginPath();glx.arc(cx,cy,r+4,0,Math.PI*2);glx.strokeStyle='rgba(74,143,231,0.08)';glx.lineWidth=8;glx.stroke();
+glx.strokeStyle='rgba(74,143,231,0.25)';glx.lineWidth=1.5;
+for(let i=-3;i<=3;i++){const lat=(i/4)*Math.PI*.45,ry=r*Math.cos(lat),yO=r*Math.sin(lat);glx.beginPath();for(let a=0;a<=100;a++){const an=(a/100)*Math.PI*2,x=cx+ry*Math.cos(an),y=cy-yO,z=ry*Math.sin(an),sc=1/(1+z*.0004),px=cx+(x-cx)*sc,py=cy+(y-cy)*sc;glx.globalAlpha=Math.sin(an)>-0.1?1:0.15;if(a===0)glx.moveTo(px,py);else glx.lineTo(px,py)}glx.globalAlpha=1;glx.stroke()}
+for(let i=0;i<12;i++){const lon=(i/12)*Math.PI*2+rot;glx.beginPath();for(let a=0;a<=60;a++){const lat=(a/60)*Math.PI-Math.PI/2,x=r*Math.cos(lat)*Math.cos(lon),y=r*Math.sin(lat),z=r*Math.cos(lat)*Math.sin(lon),f=Math.sin(lon);glx.globalAlpha=Math.max(.05,f>-0.15?.2+f*.8:.05);if(a===0)glx.moveTo(cx+x,cy-y);else glx.lineTo(cx+x,cy-y)}glx.globalAlpha=1;glx.stroke()}
+glx.beginPath();glx.arc(cx,cy,r,0,Math.PI*2);glx.strokeStyle='rgba(74,143,231,0.35)';glx.lineWidth=2;glx.stroke();
+glx.beginPath();glx.arc(cx,cy,3,0,Math.PI*2);glx.fillStyle='rgba(74,143,231,0.5)';glx.fill();
+gF++;requestAnimationFrame(dG)}dG();
+</script>
 </body>
 </html>

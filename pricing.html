@@ -6,689 +6,178 @@
 <title>Pricing — RCHsites</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.pricing-hero {
-  padding: 10rem 0 4rem;
-  text-align: center;
-  position: relative;
-}
+.p-hero{padding:10rem 0 4rem;text-align:center}
+.p-hero .sec-sub{margin:1rem auto 0}
 
-.pricing-hero .bg-shapes { opacity: 0.6; }
+/* pricing cards */
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;padding:2rem 0 6rem;max-width:1100px;margin:0 auto}
+.p-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:2.2rem 1.8rem;display:flex;flex-direction:column;transition:.3s;position:relative}
+.p-card:hover{border-color:var(--border-blue);box-shadow:var(--glow-sm);transform:translateY(-4px)}
+.p-card.feat{border-color:var(--border-blue);background:linear-gradient(175deg,var(--bg-card) 0%,rgba(74,143,231,0.03) 100%);transform:scale(1.02);z-index:2;box-shadow:var(--glow-sm)}
+.p-card.feat:hover{transform:scale(1.02) translateY(-4px)}
+.pop-tag{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-h);font-size:.45rem;letter-spacing:.15em;text-transform:uppercase;background:var(--blue);color:#fff;padding:.25rem .7rem;border-radius:100px}
+.p-tier{font-family:var(--font-h);font-size:.5rem;text-transform:uppercase;letter-spacing:.18em;color:var(--blue);margin-bottom:.8rem}
+.p-amount{font-family:var(--font-h);font-size:2.8rem;letter-spacing:-.02em;line-height:1;margin-bottom:.3rem}
+.p-amount sup{font-size:1rem;vertical-align:super;margin-right:1px}
+.p-label{font-size:.82rem;color:var(--text-soft);margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid var(--border)}
+.p-features{list-style:none;display:flex;flex-direction:column;gap:.7rem;flex:1;margin-bottom:2rem}
+.p-features li{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:var(--text-mid);line-height:1.5}
+.p-features li::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+.p-cta{display:block;text-align:center;padding:.8rem;border-radius:100px;font-weight:600;font-size:.82rem;border:1px solid var(--border-light);background:transparent;color:var(--text);cursor:pointer;font-family:var(--font);transition:.3s}
+.p-cta:hover{border-color:var(--blue);color:var(--blue);box-shadow:var(--glow-sm)}
+.p-card.feat .p-cta{background:var(--blue);color:#fff;border-color:var(--blue)}
+.p-card.feat .p-cta:hover{background:var(--blue-bright);box-shadow:0 6px 24px rgba(74,143,231,0.25)}
 
-.pricing-toggle {
-  display: inline-flex;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 4px;
-  margin-top: 2rem;
-  gap: 2px;
-}
+/* comparison */
+.compare{padding:4rem 0;border-top:1px solid var(--border)}
+.compare table{width:100%;border-collapse:collapse;margin-top:2rem}
+.compare th,.compare td{padding:.9rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-size:.82rem}
+.compare thead th{font-family:var(--font-h);font-size:.5rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-faint);padding-bottom:1rem;border-bottom:2px solid var(--border)}
+.compare th{font-weight:600;color:var(--text)}
+.compare td{color:var(--text-mid)}
+.compare td:not(:first-child),.compare thead th:not(:first-child){text-align:center}
+.hl-col{background:rgba(74,143,231,0.03)}
+.t-check{color:var(--blue);font-weight:700}.t-x{color:var(--text-faint)}
 
-.pricing-toggle button {
-  padding: 0.6rem 1.5rem;
-  border: none;
-  background: transparent;
-  border-radius: 8px;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.25s;
-}
+/* upkeep */
+.upkeep{padding:6rem 0;border-top:1px solid var(--border);background:var(--bg-card)}
+.up-note{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--blue-faint);border:1px solid var(--border-blue);border-radius:100px;font-size:.72rem;color:var(--blue-bright);font-weight:600;margin-bottom:1.5rem}
+.up-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.up-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:1.8rem;transition:.3s}
+.up-card:hover{border-color:var(--border-blue);box-shadow:var(--glow-sm)}
+.up-tier{font-family:var(--font-h);font-size:.48rem;text-transform:uppercase;letter-spacing:.15em;color:var(--blue);margin-bottom:.6rem}
+.up-price{font-family:var(--font-h);font-size:1.8rem;letter-spacing:-.01em;margin-bottom:.2rem}
+.up-price span{font-size:.8rem;font-weight:400;font-family:var(--font);color:var(--text-soft)}
+.up-desc{font-size:.82rem;color:var(--text-soft);margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);line-height:1.6}
+.up-feats{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.up-feats li{font-size:.8rem;color:var(--text-mid);display:flex;align-items:center;gap:.5rem}
+.up-feats li::before{content:'—';color:var(--blue);font-weight:700}
 
-.pricing-toggle button.active {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(196,93,62,0.2);
-}
+/* faq */
+.faq{padding:6rem 0;border-top:1px solid var(--border)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;cursor:pointer;transition:.3s}
+.faq-item:hover{border-color:var(--border-blue)}
+.faq-q{font-weight:600;font-size:.88rem;display:flex;justify-content:space-between;align-items:center}
+.faq-q .tog{font-size:1.1rem;color:var(--blue);transition:transform .3s}
+.faq-item.open .tog{transform:rotate(45deg)}
+.faq-a{font-size:.84rem;color:var(--text-soft);line-height:1.65;max-height:0;overflow:hidden;transition:max-height .4s,opacity .3s,margin .3s;opacity:0;margin-top:0}
+.faq-item.open .faq-a{max-height:200px;opacity:1;margin-top:.8rem}
 
-/* ── PRICING CARDS ── */
-.pricing-section { padding: 2rem 0 6rem; }
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.price-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem 2rem;
-  display: flex; flex-direction: column;
-  transition: all var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.price-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
-}
-
-.price-card.featured {
-  border-color: var(--accent);
-  background: linear-gradient(175deg, var(--bg-card) 0%, rgba(196,93,62,0.03) 100%);
-  transform: scale(1.03);
-  z-index: 2;
-  box-shadow: var(--shadow-lg);
-}
-
-.price-card.featured:hover {
-  transform: scale(1.03) translateY(-6px);
-  box-shadow: var(--shadow-xl), 0 0 0 1px var(--accent);
-}
-
-.popular-tag {
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.3rem 0.8rem;
-  border-radius: 6px;
-}
-
-.price-tier {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.price-amount {
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: 0.3rem;
-}
-
-.price-amount sup {
-  font-size: 1.2rem;
-  vertical-align: super;
-  margin-right: 1px;
-  font-weight: 700;
-}
-
-.price-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.price-features {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 0.85rem;
-  flex: 1;
-  margin-bottom: 2.5rem;
-}
-
-.price-features li {
-  display: flex; align-items: flex-start; gap: 0.7rem;
-  font-size: 0.9rem;
-  color: var(--text-mid);
-  line-height: 1.5;
-}
-
-.check {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  background: var(--accent-bg);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.check svg {
-  width: 12px; height: 12px;
-  stroke: var(--accent);
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.price-cta {
-  display: block;
-  text-align: center;
-  padding: 0.9rem;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: 1.5px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  font-family: var(--font-body);
-  transition: all var(--transition);
-}
-
-.price-cta:hover {
-  border-color: var(--accent);
-  background: var(--accent-bg);
-  color: var(--accent);
-}
-
-.price-card.featured .price-cta {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-
-.price-card.featured .price-cta:hover {
-  background: var(--accent-dark);
-  box-shadow: 0 6px 24px rgba(196,93,62,0.3);
-  transform: translateY(-1px);
-}
-
-/* ── COMPARISON TABLE ── */
-.comparison {
-  padding: 4rem 0;
-  border-top: 1px solid var(--border);
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 2.5rem;
-}
-
-.comparison-table th,
-.comparison-table td {
-  padding: 1rem 1.2rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
-}
-
-.comparison-table th {
-  font-weight: 600;
-  color: var(--text);
-}
-
-.comparison-table thead th {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  padding-bottom: 1.2rem;
-  border-bottom: 2px solid var(--border);
-}
-
-.comparison-table thead th:first-child { color: var(--text-faint); }
-
-.comparison-table td {
-  color: var(--text-muted);
-}
-
-.comparison-table td:not(:first-child) { text-align: center; }
-.comparison-table thead th:not(:first-child) { text-align: center; }
-
-.comparison-table .highlight-col {
-  background: rgba(196,93,62,0.03);
-}
-
-.table-check { color: var(--accent); font-weight: 700; font-size: 1rem; }
-.table-x { color: var(--text-faint); }
-
-/* ── UPKEEP SECTION ── */
-.upkeep-section {
-  padding: 6rem 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg-white);
-}
-
-.upkeep-note {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.5rem 1rem;
-  background: rgba(196,93,62,0.06);
-  border: 1px solid var(--accent-light);
-  border-radius: 8px;
-  font-size: 0.82rem;
-  color: var(--accent-dark);
-  margin-bottom: 2rem;
-  font-weight: 500;
-}
-
-.upkeep-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.upkeep-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: all var(--transition);
-}
-
-.upkeep-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent-light);
-}
-
-.upkeep-tier {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--navy-light);
-  margin-bottom: 0.8rem;
-}
-
-.upkeep-price {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 0.3rem;
-}
-
-.upkeep-price span {
-  font-size: 0.85rem;
-  font-weight: 400;
-  font-family: var(--font-body);
-  color: var(--text-muted);
-}
-
-.upkeep-desc {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.upkeep-features {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 0.6rem;
-}
-
-.upkeep-features li {
-  font-size: 0.85rem;
-  color: var(--text-mid);
-  display: flex; align-items: center; gap: 0.5rem;
-  line-height: 1.5;
-}
-
-.upkeep-features li::before {
-  content: '';
-  width: 5px; height: 5px;
-  background: var(--navy-light);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* ── FAQ ── */
-.faq-section { padding: 6rem 0; border-top: 1px solid var(--border); }
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  margin-top: 2.5rem;
-}
-
-.faq-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem 1.8rem;
-  cursor: pointer;
-  transition: all var(--transition);
-}
-
-.faq-item:hover {
-  border-color: var(--accent-light);
-  box-shadow: var(--shadow-sm);
-}
-
-.faq-q {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.faq-q .toggle-icon {
-  font-size: 1.2rem;
-  color: var(--accent);
-  transition: transform 0.3s;
-}
-
-.faq-item.open .toggle-icon { transform: rotate(45deg); }
-
-.faq-a {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s;
-  opacity: 0;
-}
-
-.faq-item.open .faq-a {
-  max-height: 200px;
-  opacity: 1;
-}
-
-@media (max-width: 900px) {
-  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
-  .price-card.featured { transform: none; }
-  .price-card.featured:hover { transform: translateY(-6px); }
-  .upkeep-grid { grid-template-columns: 1fr; }
-  .faq-grid { grid-template-columns: 1fr; }
-  .comparison-table { font-size: 0.8rem; }
-  .comparison-table th, .comparison-table td { padding: 0.7rem 0.6rem; }
-}
+@media(max-width:900px){.p-grid{grid-template-columns:1fr;max-width:420px}.p-card.feat{transform:none}.p-card.feat:hover{transform:translateY(-4px)}.up-grid{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<canvas id="gridCanvas"></canvas>
+<div class="page">
 
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">RCH<span>sites</span></a>
-  <button class="nav-toggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav-links">
+  <a href="index.html" class="n-logo">RCH<span>SITES</span></a>
+  <button class="n-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="n-links">
     <a href="index.html">Home</a>
     <a href="pricing.html" class="active">Pricing</a>
     <a href="portal.html">Client Portal</a>
-    <a href="request.html" class="nav-cta">Start a Project</a>
+    <a href="request.html" class="n-cta">Start a Project</a>
   </div>
 </nav>
 
-<div class="page-content">
-
-<!-- HERO -->
-<section class="pricing-hero">
-  <div class="bg-shapes">
-    <div class="bg-shape"></div>
-    <div class="bg-shape"></div>
-  </div>
+<section class="p-hero">
   <div class="container">
-    <div class="section-eyebrow">Pricing</div>
-    <h2 class="section-heading">Simple, honest <em>pricing.</em></h2>
-    <p class="section-sub" style="margin:1rem auto 0;">One-time payment for your site. Optional monthly upkeep if you want it.</p>
+    <div class="eyebrow rv">Pricing</div>
+    <h2 class="sec-h rv">Simple, honest <span class="hl">pricing.</span></h2>
+    <p class="sec-sub rv" style="margin:1rem auto 0">One-time payment for your site. Optional monthly upkeep if you want it.</p>
   </div>
 </section>
 
-<!-- DESIGN PACKAGES -->
-<section class="pricing-section">
+<section style="padding:0 0 4rem">
   <div class="container">
-    <div class="pricing-grid stagger">
-      <!-- STARTER -->
-      <div class="price-card tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <div class="price-tier">Starter</div>
-          <div class="price-amount"><sup>$</sup>800</div>
-          <div class="price-label">One-time payment</div>
-          <ul class="price-features">
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Up to 3 pages</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Mobile-responsive design</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> 1 revision round</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> HTML/CSS/JS file delivery</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Printed instruction pamphlet</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Client Portal preview</li>
-          </ul>
-          <a href="request.html" class="price-cta">Get Started</a>
-        </div>
+    <div class="p-grid">
+      <div class="p-card rv">
+        <div class="p-tier">Starter</div>
+        <div class="p-amount"><sup>$</sup>800</div>
+        <div class="p-label">One-time payment</div>
+        <ul class="p-features">
+          <li>Up to 3 pages</li><li>Mobile-responsive design</li><li>1 revision round</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
+        </ul>
+        <a href="request.html" class="p-cta">Get Started</a>
       </div>
-
-      <!-- PROFESSIONAL -->
-      <div class="price-card featured tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <span class="popular-tag">Popular</span>
-          <div class="price-tier">Professional</div>
-          <div class="price-amount"><sup>$</sup>1,500</div>
-          <div class="price-label">One-time payment</div>
-          <ul class="price-features">
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Up to 7 pages</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Mobile-responsive design</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> 3 revision rounds</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Contact form integration</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Basic SEO setup</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> HTML/CSS/JS file delivery</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Printed instruction pamphlet</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Client Portal preview</li>
-          </ul>
-          <a href="request.html" class="price-cta">Get Started</a>
-        </div>
+      <div class="p-card feat rv">
+        <span class="pop-tag">Popular</span>
+        <div class="p-tier">Professional</div>
+        <div class="p-amount"><sup>$</sup>1,500</div>
+        <div class="p-label">One-time payment</div>
+        <ul class="p-features">
+          <li>Up to 7 pages</li><li>Mobile-responsive design</li><li>3 revision rounds</li><li>Contact form integration</li><li>Basic SEO setup</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
+        </ul>
+        <a href="request.html" class="p-cta">Get Started</a>
       </div>
-
-      <!-- PREMIUM -->
-      <div class="price-card tilt-card reveal">
-        <div class="tilt-inner">
-          <div class="tilt-shine"></div>
-          <div class="price-tier">Premium</div>
-          <div class="price-amount"><sup>$</sup>2,500</div>
-          <div class="price-label">One-time payment</div>
-          <ul class="price-features">
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Unlimited pages</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Mobile-responsive design</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Unlimited revisions</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Advanced animations &amp; interactions</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Full SEO &amp; performance optimization</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> HTML/CSS/JS file delivery</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Printed instruction pamphlet</li>
-            <li><span class="check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span> Client Portal preview</li>
-          </ul>
-          <a href="request.html" class="price-cta">Get Started</a>
-        </div>
+      <div class="p-card rv">
+        <div class="p-tier">Premium</div>
+        <div class="p-amount"><sup>$</sup>2,500</div>
+        <div class="p-label">One-time payment</div>
+        <ul class="p-features">
+          <li>Unlimited pages</li><li>Mobile-responsive design</li><li>Unlimited revisions</li><li>Advanced animations &amp; interactions</li><li>Full SEO &amp; performance optimization</li><li>HTML/CSS/JS file delivery</li><li>Printed instruction pamphlet</li><li>Client Portal preview</li>
+        </ul>
+        <a href="request.html" class="p-cta">Get Started</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMPARISON -->
-<section class="comparison">
-  <div class="container">
-    <h3 class="section-heading reveal" style="font-size:1.8rem;">Compare plans</h3>
-    <table class="comparison-table reveal">
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Starter</th>
-          <th class="highlight-col">Professional</th>
-          <th>Premium</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Pages</th>
-          <td>Up to 3</td>
-          <td class="highlight-col">Up to 7</td>
-          <td>Unlimited</td>
-        </tr>
-        <tr>
-          <th>Revision Rounds</th>
-          <td>1</td>
-          <td class="highlight-col">3</td>
-          <td>Unlimited</td>
-        </tr>
-        <tr>
-          <th>Contact Form</th>
-          <td><span class="table-x">—</span></td>
-          <td class="highlight-col"><span class="table-check">✓</span></td>
-          <td><span class="table-check">✓</span></td>
-        </tr>
-        <tr>
-          <th>SEO Setup</th>
-          <td><span class="table-x">—</span></td>
-          <td class="highlight-col">Basic</td>
-          <td>Full</td>
-        </tr>
-        <tr>
-          <th>Animations</th>
-          <td>Standard</td>
-          <td class="highlight-col">Standard</td>
-          <td>Advanced / Custom</td>
-        </tr>
-        <tr>
-          <th>Performance Optimization</th>
-          <td><span class="table-x">—</span></td>
-          <td class="highlight-col"><span class="table-x">—</span></td>
-          <td><span class="table-check">✓</span></td>
-        </tr>
-        <tr>
-          <th>HTML Files + Pamphlet</th>
-          <td><span class="table-check">✓</span></td>
-          <td class="highlight-col"><span class="table-check">✓</span></td>
-          <td><span class="table-check">✓</span></td>
-        </tr>
-        <tr>
-          <th>Client Portal Preview</th>
-          <td><span class="table-check">✓</span></td>
-          <td class="highlight-col"><span class="table-check">✓</span></td>
-          <td><span class="table-check">✓</span></td>
-        </tr>
-      </tbody>
-    </table>
+<section class="compare"><div class="container">
+  <h3 class="sec-h rv" style="font-size:1.3rem">Compare <span class="hl">plans</span></h3>
+  <table class="rv">
+    <thead><tr><th>Feature</th><th>Starter</th><th class="hl-col">Professional</th><th>Premium</th></tr></thead>
+    <tbody>
+      <tr><th>Pages</th><td>Up to 3</td><td class="hl-col">Up to 7</td><td>Unlimited</td></tr>
+      <tr><th>Revision Rounds</th><td>1</td><td class="hl-col">3</td><td>Unlimited</td></tr>
+      <tr><th>Contact Form</th><td><span class="t-x">—</span></td><td class="hl-col"><span class="t-check">✓</span></td><td><span class="t-check">✓</span></td></tr>
+      <tr><th>SEO Setup</th><td><span class="t-x">—</span></td><td class="hl-col">Basic</td><td>Full</td></tr>
+      <tr><th>Animations</th><td>Standard</td><td class="hl-col">Standard</td><td>Advanced / Custom</td></tr>
+      <tr><th>Performance Opt.</th><td><span class="t-x">—</span></td><td class="hl-col"><span class="t-x">—</span></td><td><span class="t-check">✓</span></td></tr>
+      <tr><th>Files + Pamphlet</th><td><span class="t-check">✓</span></td><td class="hl-col"><span class="t-check">✓</span></td><td><span class="t-check">✓</span></td></tr>
+      <tr><th>Portal Preview</th><td><span class="t-check">✓</span></td><td class="hl-col"><span class="t-check">✓</span></td><td><span class="t-check">✓</span></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="upkeep" id="upkeep"><div class="container">
+  <div class="up-note rv">⚡ Separate, optional service — not required</div>
+  <div class="eyebrow rv">Add-On</div>
+  <h2 class="sec-h rv">Monthly <span class="hl">upkeep.</span></h2>
+  <p class="sec-sub rv">Don't want to manage it yourself? We'll keep your site updated, secure, and running. Cancel anytime.</p>
+  <div class="up-grid">
+    <div class="up-card rv"><div class="up-tier">Basic</div><div class="up-price">$20 <span>/mo</span></div><div class="up-desc">Monitoring and minor fixes — peace of mind.</div><ul class="up-feats"><li>Monthly health check</li><li>Bug fixes &amp; broken links</li><li>Security patches</li><li>Email support</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Standard</div><div class="up-price">$30 <span>/mo</span></div><div class="up-desc">Active maintenance — content tweaks and ongoing care.</div><ul class="up-feats"><li>Everything in Basic</li><li>Text &amp; image updates (2/mo)</li><li>Performance monitoring</li><li>Priority email support</li></ul></div>
+    <div class="up-card rv"><div class="up-tier">Priority</div><div class="up-price">$50 <span>/mo</span></div><div class="up-desc">Full-service — your site evolves with your business.</div><ul class="up-feats"><li>Everything in Standard</li><li>Unlimited content updates</li><li>Layout &amp; design adjustments</li><li>Monthly analytics report</li><li>Same-day response</li></ul></div>
   </div>
-</section>
+</div></section>
 
-<!-- UPKEEP -->
-<section class="upkeep-section" id="upkeep">
-  <div class="container">
-    <div class="upkeep-note">⚡ This is a separate, optional service — not required</div>
-    <div class="section-eyebrow">Add-On</div>
-    <h2 class="section-heading reveal">Monthly <em>upkeep.</em></h2>
-    <p class="section-sub reveal">Don't want to manage it yourself? We'll keep your site updated, secure, and running. Cancel anytime.</p>
-
-    <div class="upkeep-grid stagger">
-      <div class="upkeep-card reveal">
-        <div class="upkeep-tier">Basic Upkeep</div>
-        <div class="upkeep-price">$40 <span>/month</span></div>
-        <div class="upkeep-desc">Monitoring and minor fixes — peace of mind without the overhead.</div>
-        <ul class="upkeep-features">
-          <li>Monthly health check</li>
-          <li>Bug fixes &amp; broken links</li>
-          <li>Security patches</li>
-          <li>Email support</li>
-        </ul>
-      </div>
-      <div class="upkeep-card reveal">
-        <div class="upkeep-tier">Standard Upkeep</div>
-        <div class="upkeep-price">$75 <span>/month</span></div>
-        <div class="upkeep-desc">Active maintenance — content tweaks, small edits, and ongoing care.</div>
-        <ul class="upkeep-features">
-          <li>Everything in Basic</li>
-          <li>Text &amp; image updates (2/mo)</li>
-          <li>Performance monitoring</li>
-          <li>Priority email support</li>
-        </ul>
-      </div>
-      <div class="upkeep-card reveal">
-        <div class="upkeep-tier">Priority Upkeep</div>
-        <div class="upkeep-price">$100 <span>/month</span></div>
-        <div class="upkeep-desc">Full-service — your site evolves with your business, hands-free.</div>
-        <ul class="upkeep-features">
-          <li>Everything in Standard</li>
-          <li>Unlimited content updates</li>
-          <li>Layout &amp; design adjustments</li>
-          <li>Monthly analytics report</li>
-          <li>Same-day response time</li>
-        </ul>
-      </div>
-    </div>
+<section class="faq"><div class="container">
+  <div class="eyebrow rv">FAQ</div>
+  <h2 class="sec-h rv">Common <span class="hl">questions.</span></h2>
+  <div class="faq-grid">
+    <div class="faq-item rv" onclick="this.classList.toggle('open')"><div class="faq-q">What exactly do I receive? <span class="tog">+</span></div><div class="faq-a">A complete folder of HTML, CSS, JavaScript, images, and fonts — everything your site needs. Plus a printed instruction pamphlet explaining how to host it, point your domain, and make basic edits.</div></div>
+    <div class="faq-item rv" onclick="this.classList.toggle('open')"><div class="faq-q">Do I need the monthly upkeep? <span class="tog">+</span></div><div class="faq-a">Not at all. The upkeep service is completely optional. Your site works on its own — upkeep is there if you'd rather have someone else handle updates.</div></div>
+    <div class="faq-item rv" onclick="this.classList.toggle('open')"><div class="faq-q">Where do I host the site? <span class="tog">+</span></div><div class="faq-a">Anywhere. Netlify, Vercel, GitHub Pages, Cloudflare Pages (all free), or a traditional host like Namecheap or SiteGround. The pamphlet walks you through it.</div></div>
+    <div class="faq-item rv" onclick="this.classList.toggle('open')"><div class="faq-q">What's a "revision round"? <span class="tog">+</span></div><div class="faq-a">One batch of design feedback. You review the preview in the Client Portal, send over all changes at once, and we implement them. That counts as one round.</div></div>
+    <div class="faq-item rv" onclick="this.classList.toggle('open')"><div class="faq-q">Can I cancel upkeep anytime? <span class="tog">+</span></div><div class="faq-a">Yes — no contracts, no cancellation fees. Just let us know and the next billing cycle won't be charged. Your site keeps working since you own the files.</div></div>
+    <div class="faq-item rv" onclick="this.classList.toggle('open')"><div class="faq-q">How long does a project take? <span class="tog">+</span></div><div class="faq-a">Typically 1–3 weeks. Starter sites ship within a week, Professional within two, and Premium varies by scope.</div></div>
   </div>
-</section>
+</div></section>
 
-<!-- FAQ -->
-<section class="faq-section">
-  <div class="container">
-    <div class="section-eyebrow">FAQ</div>
-    <h2 class="section-heading reveal">Common <em>questions.</em></h2>
-
-    <div class="faq-grid stagger">
-      <div class="faq-item reveal" onclick="this.classList.toggle('open')">
-        <div class="faq-q">What exactly do I receive? <span class="toggle-icon">+</span></div>
-        <div class="faq-a">A complete folder of HTML, CSS, JavaScript, images, and fonts — everything your site needs to go live. Plus a printed instruction pamphlet explaining how to host it, point your domain, and make basic edits.</div>
-      </div>
-      <div class="faq-item reveal" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Do I need the monthly upkeep? <span class="toggle-icon">+</span></div>
-        <div class="faq-a">Not at all. The upkeep service is completely optional and separate. Your site works on its own — upkeep is just there if you'd rather have someone else handle updates and maintenance.</div>
-      </div>
-      <div class="faq-item reveal" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Where do I host the site? <span class="toggle-icon">+</span></div>
-        <div class="faq-a">Anywhere you want. Netlify, Vercel, GitHub Pages, Cloudflare Pages (all free), or a traditional host like Namecheap, SiteGround, or GoDaddy. The pamphlet walks you through it.</div>
-      </div>
-      <div class="faq-item reveal" onclick="this.classList.toggle('open')">
-        <div class="faq-q">What counts as a "revision round"? <span class="toggle-icon">+</span></div>
-        <div class="faq-a">One revision round = one batch of design feedback. You review the preview in the Client Portal, send over all your changes at once, and we implement them. This counts as one round.</div>
-      </div>
-      <div class="faq-item reveal" onclick="this.classList.toggle('open')">
-        <div class="faq-q">Can I cancel upkeep anytime? <span class="toggle-icon">+</span></div>
-        <div class="faq-a">Yes — no contracts, no cancellation fees. Just let us know and the next billing cycle won't be charged. Your site keeps working normally since you own the files.</div>
-      </div>
-      <div class="faq-item reveal" onclick="this.classList.toggle('open')">
-        <div class="faq-q">How long does a project take? <span class="toggle-icon">+</span></div>
-        <div class="faq-a">Typically 1–3 weeks depending on the plan and complexity. Starter sites usually ship within a week, Professional within two, and Premium projects vary by scope.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">RCH<span>sites</span></div>
-        <p class="footer-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="portal.html">Client Portal</a>
-        <a href="request.html">Request a Quote</a>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Access</h4>
-        <a href="portal.html">View My Site</a>
-        <a href="pricing.html#upkeep">Monthly Upkeep</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:hello@rchsites.com">hello@rchsites.com</a>
-        <a href="request.html">Project Request Form</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 RCHsites. All rights reserved.</span>
-      <span>Opelika, Alabama</span>
-    </div>
+  <div class="f-grid">
+    <div><div class="f-brand">RCH<span>SITES</span></div><p class="f-desc">Custom websites, built and delivered. No subscriptions, no lock-in — just clean files, yours forever.</p></div>
+    <div class="f-col"><h4>Pages</h4><a href="index.html">Home</a><a href="pricing.html">Pricing</a><a href="portal.html">Client Portal</a><a href="request.html">Request a Quote</a></div>
+    <div class="f-col"><h4>Quick Access</h4><a href="portal.html">View My Site</a><a href="pricing.html#upkeep">Monthly Upkeep</a></div>
+    <div class="f-col"><h4>Contact</h4><a href="mailto:requests@rchsites.com">requests@rchsites.com</a><a href="request.html">Project Request Form</a></div>
   </div>
+  <div class="f-bottom"><span>© 2026 RCHSITES</span><span>OPELIKA, ALABAMA</span></div>
 </footer>
 
+</div>
 <script src="main.js"></script>
 </body>
 </html>
